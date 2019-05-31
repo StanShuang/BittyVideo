@@ -31,4 +31,14 @@ dependencies {
     implementation rootProject.ext.supportLibs
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation project(':multiple-status-view')
+    //运行时权限
+    implementation'pub.devrel:easypermissions:1.2.0'
+    //Logger
+    implementation 'com.orhanobut:logger:2.1.1'
+    //leakCanary,内存泄漏检查
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.5.4'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.4'
+    //kotlin 支持库
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
