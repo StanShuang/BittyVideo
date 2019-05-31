@@ -1,0 +1,25 @@
+ext{
+
+    android = [
+            compileSdkVersion:27,
+            buildToolsVersion:"27.0.3",
+            minSdkVersion:19,
+            targetSdkVersion:27,
+            versinCode:1,
+            versionName:"1.0"
+
+    ]
+    dependVersion = [
+            androidSupportSdkVersion: "27.1.1"
+    ]
+    supportDeps = [
+            //--------  support  -------
+            supportv4               : "com.android.support:support-v4:$dependVersion.androidSupportSdkVersion",
+            appcompatv7             : "com.android.support:appcompat-v7:$dependVersion.androidSupportSdkVersion",
+            cardview                : "com.android.support:cardview-v7:$dependVersion.androidSupportSdkVersion",
+            design                  : "com.android.support:design:$dependVersion.androidSupportSdkVersion",
+            annotations             : "com.android.support:support-annotations:$dependVersion.androidSupportSdkVersion"
+    ]
+
+    supportLibs = supportDeps.values()
+}
