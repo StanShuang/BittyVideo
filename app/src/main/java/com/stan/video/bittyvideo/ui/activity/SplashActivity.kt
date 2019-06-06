@@ -5,7 +5,6 @@ import android.content.Intent
 import android.graphics.Typeface
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
-import com.stan.video.bittyvideo.MainActivity
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.app.MyApplication
 import com.stan.video.bittyvideo.base.BaseActivity
