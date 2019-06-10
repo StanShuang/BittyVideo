@@ -2,6 +2,7 @@ package com.stan.video.bittyvideo.utils
 
 import android.content.Context
 import android.content.pm.PackageManager
+import android.os.Build
 
 /**
  * Created by Stan
@@ -29,6 +30,11 @@ class AppUtils private constructor(){
             }
 
             return verName
+        }
+        fun getMobileModel(): String {
+            var model: String? = Build.MODEL
+            model = model?.trim { it <= ' ' } ?: ""
+            return model
         }
     }
 }

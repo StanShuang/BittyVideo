@@ -23,7 +23,7 @@ class SplashActivity:BaseActivity() {
     private var alphaAnimation: AlphaAnimation? = null
     override fun layoutId(): Int = R.layout.activity_splash
     init {
-        textTypeFace = Typeface.createFromAsset(MyApplication.context.assets,"fonts/lobster-1.4.otf")
+        textTypeFace = Typeface.createFromAsset(MyApplication.context.assets,"fonts/Lobster-1.4.otf")
         descTypeFace = Typeface.createFromAsset(MyApplication.context.assets,"fonts/FZLanTingHeiS-L-GB-Regular.TTF")
     }
 

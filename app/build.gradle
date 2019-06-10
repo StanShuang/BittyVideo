@@ -33,6 +33,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     // Support库
     implementation rootProject.ext.supportLibs
+    // 网络请求库
+    implementation rootProject.ext.networkLibs
+    // RxJava2
+    implementation rootProject.ext.rxJavaLibs
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':multiple-status-view')
@@ -51,4 +55,9 @@ dependencies {
     }
     //模糊透明 View
     implementation 'com.github.mmin18:realtimeblurview:1.1.0'
+    //smartRefreshLayout 下拉刷新
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3'
+    implementation 'com.scwang.smartrefresh:SmartRefreshHeader:1.0.3'
+    //Logger
+    implementation 'com.orhanobut:logger:2.1.1'
 }
