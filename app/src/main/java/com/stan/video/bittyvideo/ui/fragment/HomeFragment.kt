@@ -1,6 +1,7 @@
 package com.stan.video.bittyvideo.ui.fragment
 
 import android.os.Bundle
+import com.orhanobut.logger.Logger
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.base.BaseFragment
 import com.stan.video.bittyvideo.ext.showToast
@@ -15,6 +16,7 @@ import kotlinx.android.synthetic.main.fragment_home.*
  * Created by Stan
  * on 2019/6/6.
  */
+@Suppress("DEPRECATION")
 class HomeFragment: BaseFragment() ,HomeContract.View{
     private var mTitle: String? = null
     override fun getLayoutId(): Int = R.layout.fragment_home
@@ -60,7 +62,8 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
     }
 
     override fun setHomeData(homeBean: HomeBean) {
-
+        mLayoutStatusView?.showContent()
+        Logger.d(homeBean)
     }
 
     override fun setMoreData(itemList: ArrayList<HomeBean.Issue.Item>) {
