@@ -6,4 +6,5 @@ package com.stan.video.bittyvideo.utils
  */
 object Constant {
     const val PREFERENCE_FILE_NAME = "preference_kotlin"
+    const val BUNDLE_VIDEO_DATA = "video_data"
 }

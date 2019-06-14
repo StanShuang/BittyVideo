@@ -4,6 +4,9 @@ package com.stan.video.bittyvideo.ui.adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.support.v4.app.ActivityCompat
+import android.support.v4.app.ActivityOptionsCompat
+import android.support.v4.util.Pair
 import android.view.View
 import android.view.ViewGroup
 import cn.bingoogolapple.bgabanner.BGABanner
@@ -14,6 +17,7 @@ import com.stan.video.bittyvideo.ext.durationFormat
 import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.ui.activity.VideoDetailActivity
+import com.stan.video.bittyvideo.utils.Constant
 import io.reactivex.Observable
 import view.recycleview.ViewHolder
 import view.recycleview.adapter.CommonAdapter
@@ -193,6 +197,16 @@ class HomeAdapter(private val context: Context,data:ArrayList<HomeBean.Issue.Ite
      */
     private fun goToVideoPlayer(activity: Activity,view: View,itemData: HomeBean.Issue.Item){
         Intent(activity,VideoDetailActivity :: class.java).run {
+            putExtra(Constant.BUNDLE_VIDEO_DATA,itemData)
+            putExtra(VideoDetailActivity.TRANSITION,true)
+            if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
+                val pair = Pair(view,VideoDetailActivity.IMG_TRANSITION)
+                val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair)
+                ActivityCompat.startActivity(activity,this,activityOptions.toBundle())
+            }else{
+                activity.startActivity(this)
+                activity.overridePendingTransition(R.anim.anim_in,R.anim.anim_out)
+            }
 
         }
 
