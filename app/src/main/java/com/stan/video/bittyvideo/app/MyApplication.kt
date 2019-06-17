@@ -11,6 +11,7 @@ import com.orhanobut.logger.PrettyFormatStrategy
 import com.squareup.leakcanary.BuildConfig
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
+import com.stan.video.bittyvideo.utils.DisplayManager
 import kotlin.properties.Delegates
 
 /**
@@ -33,6 +34,7 @@ class MyApplication:Application() {
         context = applicationContext
         refWatcher = setupLeakCanary()
         initConfig()
+        DisplayManager.init(this)
         registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
     }
 

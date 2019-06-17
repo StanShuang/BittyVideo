@@ -113,7 +113,7 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
             }else{
                 if(mHomeAdapter?.mData!!.size >1 ){
                     toolbar.setBackgroundColor(resources.getColor(R.color.color_title_bg))
-                    iv_search.setBackgroundColor(R.mipmap.ic_action_search_black)
+                    iv_search.setImageResource(R.mipmap.ic_action_search_black)
                     val itemList = mHomeAdapter!!.mData
                     val item = itemList[currentVisibleItmePosition + mHomeAdapter!!.bannerItemSize -1]
                     if(item.type == "textHeader"){
