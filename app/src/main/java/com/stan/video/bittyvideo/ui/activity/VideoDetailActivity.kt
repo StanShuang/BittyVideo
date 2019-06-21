@@ -4,6 +4,7 @@ import android.annotation.TargetApi
 import android.content.res.Configuration
 import android.os.Build
 import android.support.v4.view.ViewCompat
+import android.support.v7.widget.LinearLayoutManager
 import android.transition.Transition
 import android.view.View
 import android.widget.ImageView
@@ -22,11 +23,13 @@ import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.contract.VideoDetailContract
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.mvp.presenter.VideoDetailPresenter
+import com.stan.video.bittyvideo.ui.adapter.VideoDetailAdapter
 import com.stan.video.bittyvideo.utils.CleanLeakUtils
 import com.stan.video.bittyvideo.utils.Constant
 import com.stan.video.bittyvideo.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_video_detail.*
 import view.recycleview.VideoListener
+import java.text.SimpleDateFormat
 
 /**
  * Created by Stan
@@ -38,6 +41,9 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
         const val TRANSITION = "TRANSITION"
     }
     private val mPresenter by lazy { VideoDetailPresenter() }
+    private val mAdapter by lazy { VideoDetailAdapter(this,itemList) }
+    private val mFormat by lazy { SimpleDateFormat("yyyyMMddHHmmss"); }
+    private var itemList = java.util.ArrayList<HomeBean.Issue.Item>()
     private lateinit var itemData: HomeBean.Issue.Item
     private var orientatinUtils: OrientationUtils? = null
     private var isTransition: Boolean = false
@@ -58,7 +64,11 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
         initTransition()
         //播放视频
         initVideoViewConifig()
-
+        mRecyclerView.run {
+            layoutManager = LinearLayoutManager(this@VideoDetailActivity)
+            adapter = mAdapter
+        }
+        mAdapter.setOnItemDetailClick { mPresenter.loadVideoInfo(it) }
         //状态栏透明度以及间距处理
         StatusBarUtil.immersive(this)
         StatusBarUtil.setPaddingSmart(this,mVideoView)
@@ -68,6 +78,8 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
         mMaterialHeader = mRefreshLayout.refreshHeader as MaterialHeader
         //打开下拉刷新区背景
         mMaterialHeader?.setShowBezierWave(true)
+        /***  下拉刷新  ***/
+        //内容跟随偏移
         //设置下拉刷新主题颜色
         mRefreshLayout.run{
             setEnableHeaderTranslationContent(true)
@@ -272,6 +284,10 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
      * 设置视频信息
      */
     override fun setVideoInfo(itemInfo: HomeBean.Issue.Item) {
+        itemData = itemInfo
+        mAdapter.addData(itemInfo)
+        // 请求相关的最新等视频
+        mPresenter.requestRelatedVideo(itemInfo.data?.id?:0)
 
     }
     /**
@@ -289,7 +305,8 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
      * 设置相关的数据视频
      */
     override fun setRecentRelatedVideo(itemList: ArrayList<HomeBean.Issue.Item>) {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        mAdapter.addData(itemList)
+        this.itemList = itemList
     }
 
     override fun setErrorMsg(errorMsg: String) {

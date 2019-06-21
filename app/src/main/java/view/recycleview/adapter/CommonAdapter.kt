@@ -27,7 +27,9 @@ abstract class CommonAdapter<T>(var mContext: Context, var mData: ArrayList<T>,/
     //使用接口回调点击事件
     private var mItemLongClickListener: OnItemLongClickListener? = null
     //需要多布局
-    constructor(context: Context,data: ArrayList<T>,typeSuppot: MultipleType<T>): this(context,data,-1)
+    constructor(context: Context,data: ArrayList<T>,typeSuppot: MultipleType<T>): this(context,data,-1){
+        this.mTypeSupport = typeSuppot
+    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         if(mTypeSupport != null){

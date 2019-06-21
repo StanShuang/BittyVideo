@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:layout_marginEnd="15dp"
     android:layout_marginStart="15dp">
+
     <View
         android:layout_width="match_parent"
         android:layout_height="1px"
@@ -32,7 +33,7 @@
         android:layout_toEndOf="@+id/iv_video_small_card">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tv_title_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -42,7 +43,7 @@
             tools:text="舞动中国" />
 
         <TextView
-            android:id="@+id/tv_tag"
+            android:id="@+id/tv_tag_card"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
@@ -51,5 +52,6 @@
             tools:text="舞动中国" />
 
     </LinearLayout>
+
 
 </RelativeLayout>

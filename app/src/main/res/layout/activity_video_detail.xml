@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     app:srlAccentColor="@android:color/white"
-    app:srlEnableFooterTranslationContent="false"
+    app:srlEnableHeaderTranslationContent="false"
     app:srlEnableLoadmore="false"
     app:srlPrimaryColor="@color/colorPrimary"
     android:background="@android:color/white">
