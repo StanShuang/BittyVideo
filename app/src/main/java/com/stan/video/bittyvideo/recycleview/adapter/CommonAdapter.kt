@@ -1,12 +1,12 @@
-package view.recycleview.adapter
+package com.stan.video.bittyvideo.recycleview.adapter
 
 import android.content.Context
 import android.support.v7.widget.RecyclerView
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import view.recycleview.MultipleType
-import view.recycleview.ViewHolder
+import com.stan.video.bittyvideo.recycleview.MultipleType
+import com.stan.video.bittyvideo.recycleview.ViewHolder
 
 /**
  * Created by Stan

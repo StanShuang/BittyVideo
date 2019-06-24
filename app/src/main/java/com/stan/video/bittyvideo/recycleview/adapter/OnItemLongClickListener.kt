@@ -1,4 +1,4 @@
-package view.recycleview.adapter
+package com.stan.video.bittyvideo.recycleview.adapter
 
 /**
  * Created by Stan

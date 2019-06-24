@@ -28,7 +28,7 @@ import com.stan.video.bittyvideo.utils.CleanLeakUtils
 import com.stan.video.bittyvideo.utils.Constant
 import com.stan.video.bittyvideo.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_video_detail.*
-import view.recycleview.VideoListener
+import com.stan.video.bittyvideo.recycleview.VideoListener
 import java.text.SimpleDateFormat
 
 /**
@@ -56,6 +56,7 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
     override fun initData() {
         itemData = intent.getSerializableExtra(Constant.BUNDLE_VIDEO_DATA) as HomeBean.Issue.Item
         isTransition = intent.getBooleanExtra(TRANSITION,false)
+        //TODO 添加观看记录
     }
 
     override fun initView() {

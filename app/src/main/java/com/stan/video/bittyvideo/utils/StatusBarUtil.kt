@@ -19,8 +19,9 @@ import java.util.regex.Pattern
  * Created by Stan
  * on 2019/6/10.
  * 状态栏透明
+ *
  */
-
+//TODO 小米 MIUI 10 8.11.23 开发版（Android版本8.1.0）  不兼容
 class StatusBarUtil {
 
 

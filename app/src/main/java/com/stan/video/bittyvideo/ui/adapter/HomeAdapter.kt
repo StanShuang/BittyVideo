@@ -19,8 +19,8 @@ import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.ui.activity.VideoDetailActivity
 import com.stan.video.bittyvideo.utils.Constant
 import io.reactivex.Observable
-import view.recycleview.ViewHolder
-import view.recycleview.adapter.CommonAdapter
+import com.stan.video.bittyvideo.recycleview.ViewHolder
+import com.stan.video.bittyvideo.recycleview.adapter.CommonAdapter
 
 /**
  * Created by Stan

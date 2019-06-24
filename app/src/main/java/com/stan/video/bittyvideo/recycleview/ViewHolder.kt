@@ -1,7 +1,6 @@
-package view.recycleview
+package com.stan.video.bittyvideo.recycleview
 
 import android.annotation.SuppressLint
-import android.media.Image
 import android.support.v7.widget.RecyclerView
 import android.util.SparseArray
 import android.view.View

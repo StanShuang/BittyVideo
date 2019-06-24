@@ -26,4 +26,14 @@ interface ApiService {
      */
     @GET("v4/video/related?")
     fun getRelatedData(@Query("id") id: Long): Observable<HomeBean.Issue>
+    /**
+     * 关注
+     */
+    @GET("v4/tabs/follow")
+    fun getFollowInfo():Observable<HomeBean.Issue>
+    /**
+     * 获取更多的 Issue
+     */
+    @GET
+    fun getIssueData(@Url url: String): Observable<HomeBean.Issue>
 }
