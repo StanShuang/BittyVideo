@@ -43,7 +43,7 @@ class FollowAdapter(mContext: Context,lists: ArrayList<HomeBean.Issue.Item>):
 
     private fun setAutorInfo(data: HomeBean.Issue.Item, holder: ViewHolder) {
         val headerData = data.data?.header
-        holder.setImagePath(R.id.iv_avatar,object : ViewHolder.HolderImageLoader(headerData?.icon!!){
+        holder.setImagePath(R.id.iv_avater,object : ViewHolder.HolderImageLoader(headerData?.icon!!){
             override fun loadImage(iv: ImageView, path: String) {
                 GlideApp.with(mContext)
                         .load(path)
@@ -56,7 +56,7 @@ class FollowAdapter(mContext: Context,lists: ArrayList<HomeBean.Issue.Item>):
         holder.setText(R.id.tv_title,headerData.title)
         holder.setText(R.id.tv_desc,headerData.description)
 
-        val recyclerView = holder.getView<RecyclerView>(R.id.mRecyclerView)
+        val recyclerView = holder.getView<RecyclerView>(R.id.fl_recyclerView)
 
         recyclerView.run {
             layoutManager = LinearLayoutManager(mContext as Activity, LinearLayoutManager.HORIZONTAL,false)

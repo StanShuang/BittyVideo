@@ -23,7 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_marginEnd="15dp"
-            android:layout_toEndOf="@+id/iv_avatar"
+            android:layout_toEndOf="@+id/iv_avater"
             android:layout_toStartOf="@+id/tv_follow"
             android:orientation="vertical">
             <TextView

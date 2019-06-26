@@ -41,10 +41,9 @@ class DiscoveryFragment: BaseFragment() {
         mTabLayout.setupWithViewPager(mViewPager)
         TabLayoutHelper.setUpIndicatorWidth(mTabLayout)
         //状态栏透明和间距处理
-        activity?.run {
-            StatusBarUtil.darkMode(this)
-            StatusBarUtil.setPaddingSmart(this, toolbar)
-        }
+        //状态栏透明和间距处理
+        activity?.let { StatusBarUtil.darkMode(it) }
+        activity?.let { StatusBarUtil.setPaddingSmart(it, toolbar) }
 
 
     }
