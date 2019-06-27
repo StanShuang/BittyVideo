@@ -1,4 +1,4 @@
-package com.stan.video.bittyvideo.recycleview
+package com.stan.video.bittyvideo.view
 
 import com.shuyu.gsyvideoplayer.listener.StandardVideoAllCallBack
 

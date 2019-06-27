@@ -9,9 +9,9 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
-import com.stan.video.bittyvideo.recycleview.MultipleType
-import com.stan.video.bittyvideo.recycleview.ViewHolder
-import com.stan.video.bittyvideo.recycleview.adapter.CommonAdapter
+import com.stan.video.bittyvideo.view.MultipleType
+import com.stan.video.bittyvideo.view.ViewHolder
+import com.stan.video.bittyvideo.view.adapter.CommonAdapter
 
 /**
  * Created by Stan

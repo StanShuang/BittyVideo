@@ -1,4 +1,4 @@
-package com.stan.video.bittyvideo.recycleview
+package com.stan.video.bittyvideo.view
 
 import android.annotation.SuppressLint
 import android.support.v7.widget.RecyclerView

@@ -1,4 +1,4 @@
-package com.stan.video.bittyvideo.recycleview.adapter
+package com.stan.video.bittyvideo.view.adapter
 
 import android.annotation.SuppressLint
 import android.support.v4.app.Fragment

@@ -4,8 +4,8 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.base.BaseFragment
-import com.stan.video.bittyvideo.recycleview.TabLayoutHelper
-import com.stan.video.bittyvideo.recycleview.adapter.BaseFragmentAdapter
+import com.stan.video.bittyvideo.view.TabLayoutHelper
+import com.stan.video.bittyvideo.view.adapter.BaseFragmentAdapter
 import com.stan.video.bittyvideo.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.fragment_hot.*
 

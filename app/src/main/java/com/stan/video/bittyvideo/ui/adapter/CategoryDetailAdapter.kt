@@ -13,8 +13,8 @@ import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.ext.durationFormat
 import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
-import com.stan.video.bittyvideo.recycleview.ViewHolder
-import com.stan.video.bittyvideo.recycleview.adapter.CommonAdapter
+import com.stan.video.bittyvideo.view.ViewHolder
+import com.stan.video.bittyvideo.view.adapter.CommonAdapter
 import com.stan.video.bittyvideo.ui.activity.VideoDetailActivity
 import com.stan.video.bittyvideo.utils.Constant
 

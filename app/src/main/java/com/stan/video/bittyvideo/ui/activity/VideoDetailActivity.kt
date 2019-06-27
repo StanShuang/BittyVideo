@@ -28,7 +28,7 @@ import com.stan.video.bittyvideo.utils.CleanLeakUtils
 import com.stan.video.bittyvideo.utils.Constant
 import com.stan.video.bittyvideo.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_video_detail.*
-import com.stan.video.bittyvideo.recycleview.VideoListener
+import com.stan.video.bittyvideo.view.VideoListener
 import java.text.SimpleDateFormat
 
 /**

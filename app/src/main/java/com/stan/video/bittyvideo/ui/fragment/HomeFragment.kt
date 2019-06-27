@@ -1,6 +1,9 @@
 package com.stan.video.bittyvideo.ui.fragment
 
+import android.content.Intent
+import android.os.Build
 import android.os.Bundle
+import android.support.v4.app.ActivityOptionsCompat
 import android.support.v7.widget.DefaultItemAnimator
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
@@ -13,6 +16,7 @@ import com.stan.video.bittyvideo.mvp.contract.HomeContract
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.mvp.presenter.HomePresenter
 import com.stan.video.bittyvideo.net.exception.ErrorStatus
+import com.stan.video.bittyvideo.ui.activity.SearchActivity
 import com.stan.video.bittyvideo.ui.adapter.HomeAdapter
 import com.stan.video.bittyvideo.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.fragment_home.*
@@ -73,7 +77,7 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
 
         iv_search.setOnClickListener {
             //TODO 搜索的点击事件
-//            openSearchActivity()
+            openSearchActivity()
         }
         mLayoutStatusView = multipleStatusView
         mRecyclerView.addOnScrollListener(scrollListener)
@@ -83,6 +87,16 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
             StatusBarUtil.setPaddingSmart(this, toolbar)
         }
     }
+
+    private fun openSearchActivity() {
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+            val pair = activity?.let { ActivityOptionsCompat.makeSceneTransitionAnimation(it,iv_search,iv_search.transitionName) }
+            startActivity(Intent(activity,SearchActivity :: class.java),pair?.toBundle())
+        }else{
+            startActivity(Intent(activity,SearchActivity :: class.java))
+        }
+    }
+
     private val scrollListener = object : RecyclerView.OnScrollListener(){
         override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
