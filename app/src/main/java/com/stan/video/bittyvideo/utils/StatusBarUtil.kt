@@ -21,7 +21,7 @@ import java.util.regex.Pattern
  * 状态栏透明
  *
  */
-//TODO 小米 MIUI 10 8.11.23 开发版（Android版本8.1.0）  不兼容
+//TODO 小米 MIUI 10 8.11.23 开发版（Android版本8.1.0）  不兼容状态栏颜色修改
 class StatusBarUtil {
 
 
