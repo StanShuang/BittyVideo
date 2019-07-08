@@ -14,7 +14,7 @@ android {
         versionCode rootProject.ext.android.versionCode
         versionName rootProject.ext.android.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        multiDexEnabled true
         // 实现毛玻璃那种透明的效果需要添加的库
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true    // Enable RS support
@@ -67,4 +67,13 @@ dependencies {
     implementation 'cn.bingoogolapple:bga-banner:2.2.4@aar'
     // 视屏播放器
     implementation 'com.shuyu:GSYVideoPlayer:2.1.1'
+    //Google开源的一个布局控件
+    implementation 'com.google.android:flexbox:0.3.1'
+    //数据库
+    implementation 'org.litepal.android:core:2.0.0'
+    implementation('org.jetbrains.anko:anko:0.10.7'){
+        exclude group: 'com.android.support', module: 'support-v4'
+    }
+    implementation 'com.android.support:multidex:1.0.3'
+
 }

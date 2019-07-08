@@ -4,6 +4,7 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
+import android.support.multidex.MultiDexApplication
 import android.util.Log
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
@@ -12,13 +13,14 @@ import com.squareup.leakcanary.BuildConfig
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
 import com.stan.video.bittyvideo.utils.DisplayManager
+import org.litepal.LitePal
 import kotlin.properties.Delegates
 
 /**
  * Created by Stan
  * on 2019/5/31.
  */
-class MyApplication:Application() {
+class MyApplication: MultiDexApplication() {
     private var refWatcher: RefWatcher? = null
     companion object {
         private val TAG = "MyApplication"
@@ -34,6 +36,7 @@ class MyApplication:Application() {
         context = applicationContext
         refWatcher = setupLeakCanary()
         initConfig()
+        LitePal.initialize(this)
         DisplayManager.init(this)
         registerActivityLifecycleCallbacks(mActivityLifecycleCallbacks)
     }

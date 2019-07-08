@@ -22,13 +22,16 @@ import com.stan.video.bittyvideo.ext.showToast
 import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.contract.VideoDetailContract
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
+import com.stan.video.bittyvideo.mvp.model.bean.WatchHistoryBean
 import com.stan.video.bittyvideo.mvp.presenter.VideoDetailPresenter
 import com.stan.video.bittyvideo.ui.adapter.VideoDetailAdapter
 import com.stan.video.bittyvideo.utils.CleanLeakUtils
 import com.stan.video.bittyvideo.utils.Constant
+import com.stan.video.bittyvideo.utils.Preference
 import com.stan.video.bittyvideo.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_video_detail.*
 import com.stan.video.bittyvideo.view.VideoListener
+import org.jetbrains.anko.doAsync
 import java.text.SimpleDateFormat
 
 /**
@@ -56,7 +59,16 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
     override fun initData() {
         itemData = intent.getSerializableExtra(Constant.BUNDLE_VIDEO_DATA) as HomeBean.Issue.Item
         isTransition = intent.getBooleanExtra(TRANSITION,false)
-        //TODO 添加观看记录
+        savePlayVideo()
+    }
+
+    private fun savePlayVideo() {
+       //TODO 添加观看记录，使用Android 数据库 问题： 取出的数据为空
+        doAsync {
+            val historyBean = WatchHistoryBean(itemData)
+            historyBean.save()
+        }
+
     }
 
     override fun initView() {

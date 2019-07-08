@@ -76,7 +76,6 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
         mRefreshLayout.setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
 
         iv_search.setOnClickListener {
-            //TODO 搜索的点击事件
             openSearchActivity()
         }
         mLayoutStatusView = multipleStatusView
