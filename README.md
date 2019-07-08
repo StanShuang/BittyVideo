@@ -1,4 +1,3 @@
 # BittyVideo
- 第一次提交：开始创建项目
- 第一天：完成activity基类和开屏页面
- 第二天: 完成fragment的基类和首页activity中的四个fragment的加载
+1.数据库存储LitePal 取出的所有数据没有值都为空
+2.在沉浸式不适配部分手机
