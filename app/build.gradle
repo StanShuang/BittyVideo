@@ -19,11 +19,32 @@ android {
         renderscriptTargetApi 19
         renderscriptSupportModeEnabled true    // Enable RS support
     }
+
+    signingConfigs {
+        release {
+            storeFile file('bittyvideo.jks')
+            storePassword '012550'
+            keyAlias 'stan'
+            keyPassword '012550'
+        }
+    }
+
     buildTypes {
         release {
+            buildConfigField "boolean", "DEBUG", "false"
+            minifyEnabled false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            buildConfigField "boolean", "DEBUG", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -44,7 +65,7 @@ dependencies {
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation project(':multiple-status-view')
     //运行时权限
-    implementation'pub.devrel:easypermissions:1.2.0'
+    implementation 'pub.devrel:easypermissions:1.2.0'
     //Logger
     implementation 'com.orhanobut:logger:2.1.1'
     //leakCanary,内存泄漏检查
@@ -71,7 +92,7 @@ dependencies {
     implementation 'com.google.android:flexbox:0.3.1'
     //数据库
     implementation 'org.litepal.android:core:2.0.0'
-    implementation('org.jetbrains.anko:anko:0.10.7'){
+    implementation('org.jetbrains.anko:anko:0.10.7') {
         exclude group: 'com.android.support', module: 'support-v4'
     }
     implementation 'com.android.support:multidex:1.0.3'

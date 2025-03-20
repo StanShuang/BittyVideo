@@ -14,6 +14,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.ext.durationFormat
 import com.stan.video.bittyvideo.glide.GlideApp
+import com.stan.video.bittyvideo.mvp.model.bean.NewWatchHistoryBean
 import com.stan.video.bittyvideo.mvp.model.bean.WatchHistoryBean
 import com.stan.video.bittyvideo.ui.activity.VideoDetailActivity
 import com.stan.video.bittyvideo.utils.Constant
@@ -24,19 +25,19 @@ import com.stan.video.bittyvideo.view.adapter.CommonAdapter
  * Created by Stan
  * on 2019/7/4.
  */
-class WatchHistoryAdapter(context: Context,itemLists: ArrayList<WatchHistoryBean>,layoutId: Int): CommonAdapter<WatchHistoryBean>(context,itemLists,layoutId) {
+class WatchHistoryAdapter(context: Context, itemLists: ArrayList<NewWatchHistoryBean>, layoutId: Int): CommonAdapter<NewWatchHistoryBean>(context,itemLists,layoutId) {
 
-    fun addData(items: ArrayList<WatchHistoryBean>){
+    fun addData(items: ArrayList<NewWatchHistoryBean>){
         mData.clear()
         mData = items
         notifyDataSetChanged()
     }
-    override fun bindData(holder: ViewHolder, data: WatchHistoryBean, position: Int) {
+    override fun bindData(holder: ViewHolder, data: NewWatchHistoryBean, position: Int) {
         with(holder) {
-           val item = data.data.data
+           val item = data
             setText(R.id.tv_title_card, item?.title!!)
             setText(R.id.tv_tag_card, "#${item.category} / ${durationFormat(item.duration)}")
-            setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(item.cover.detail) {
+            setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(item.detail) {
                 override fun loadImage(iv: ImageView, path: String) {
                     GlideApp.with(mContext)
                             .load(path)
@@ -48,7 +49,7 @@ class WatchHistoryAdapter(context: Context,itemLists: ArrayList<WatchHistoryBean
         }
         holder.getView<TextView>(R.id.tv_title_card).setTextColor(ContextCompat.getColor(mContext,R.color.color_black))
         holder.setOnItemClickListener(listener = View.OnClickListener {
-            goToVideoPlayer(mContext as Activity, holder.getView(R.id.iv_video_small_card), data)
+//            goToVideoPlayer(mContext as Activity, holder.getView(R.id.iv_video_small_card), data)
         })
     }
     /**

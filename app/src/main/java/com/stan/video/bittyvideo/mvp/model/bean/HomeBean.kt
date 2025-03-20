@@ -1,5 +1,6 @@
 package com.stan.video.bittyvideo.mvp.model.bean
 
+import org.litepal.crud.LitePalSupport
 import java.io.Serializable
 
 /**
@@ -76,7 +77,7 @@ data class HomeBean(val issueList: ArrayList<Issue>, val nextPageUrl: String, va
 
                 data class WebUrl(val raw: String, val forWeibo: String) : Serializable
 
-                data class PlayInfo(val name: String, val url: String, val type: String,val urlList:ArrayList<Url>) : Serializable
+                data class PlayInfo(val name: String, val url: String, val type: String,val urlList:ArrayList<Url>) : Serializable,LitePalSupport()
 
                 data class Consumption(val collectionCount: Int, val shareCount: Int, val replyCount: Int) : Serializable
 
@@ -84,7 +85,7 @@ data class HomeBean(val issueList: ArrayList<Issue>, val nextPageUrl: String, va
 
                 data class ParentReply(val user: User, val message: String) : Serializable
 
-                data class Url(val size: Long) : Serializable
+                data class Url(val size: Long) : Serializable,LitePalSupport()
 
                 data class Header(val id: Int,val icon: String,val iconType: String,val description: String,val title: String,val font: String,val cover: String,val label: Label,
                                   val actionUrl: String ,val subtitle:String, val labelList: ArrayList<Label>): Serializable {

@@ -21,7 +21,7 @@ import kotlinx.android.synthetic.main.activity_main.*
  * on 2019/5/31.
  */
 class MainActivity: BaseActivity() {
-    private val mTilte =  arrayOf("每日精选","发现","热门","我的")
+    private lateinit var mTilte : Array<String>
     private val mIconUnSelectIds = intArrayOf(R.mipmap.ic_home_normal,R.mipmap.ic_discovery_normal,R.mipmap.ic_hot_normal,R.mipmap.ic_mine_normal)
     private val mIconSelectIds = intArrayOf(R.mipmap.ic_home_selected,R.mipmap.ic_discovery_selected,R.mipmap.ic_hot_selected,R.mipmap.ic_mine_selected)
     override fun layoutId(): Int = R.layout.activity_main
@@ -37,6 +37,12 @@ class MainActivity: BaseActivity() {
             mIndex = savedInstanceState.getInt("currTabIndex")
         }
         super.onCreate(savedInstanceState)
+        mTilte = arrayOf(
+                applicationContext.resources.getString(R.string.main_home),
+                applicationContext.resources.getString(R.string.main_discovery),
+                applicationContext.resources.getString(R.string.main_hot),
+                applicationContext.resources.getString(R.string.main_mine)
+        )
         initTab()
         tab_layout.currentTab = mIndex
         switchFragment(mIndex)
@@ -146,10 +152,10 @@ class MainActivity: BaseActivity() {
             if(System.currentTimeMillis() - mExitTime <= 2000){
                 finish()
             }else{
+                showToast(resources.getString(R.string.main_quit))
                 mExitTime = System.currentTimeMillis()
-                showToast("再按一次退出程序")
             }
-            true
+            return true
         }
         return super.onKeyDown(keyCode, event)
     }

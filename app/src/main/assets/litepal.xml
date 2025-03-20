@@ -34,6 +34,7 @@
     -->
     <list>
         <mapping class="com.stan.video.bittyvideo.mvp.model.bean.WatchHistoryBean" />
+        <mapping class="com.stan.video.bittyvideo.mvp.model.bean.NewWatchHistoryBean" />
     </list>
 
     <!--

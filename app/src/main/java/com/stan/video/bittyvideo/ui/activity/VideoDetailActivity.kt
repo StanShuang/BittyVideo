@@ -1,11 +1,13 @@
 package com.stan.video.bittyvideo.ui.activity
 
+import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.res.Configuration
 import android.os.Build
 import android.support.v4.view.ViewCompat
 import android.support.v7.widget.LinearLayoutManager
 import android.transition.Transition
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import com.bumptech.glide.load.DecodeFormat
@@ -22,22 +24,25 @@ import com.stan.video.bittyvideo.ext.showToast
 import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.contract.VideoDetailContract
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
+import com.stan.video.bittyvideo.mvp.model.bean.NewWatchHistoryBean
 import com.stan.video.bittyvideo.mvp.model.bean.WatchHistoryBean
 import com.stan.video.bittyvideo.mvp.presenter.VideoDetailPresenter
 import com.stan.video.bittyvideo.ui.adapter.VideoDetailAdapter
 import com.stan.video.bittyvideo.utils.CleanLeakUtils
 import com.stan.video.bittyvideo.utils.Constant
-import com.stan.video.bittyvideo.utils.Preference
 import com.stan.video.bittyvideo.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_video_detail.*
 import com.stan.video.bittyvideo.view.VideoListener
 import org.jetbrains.anko.doAsync
+import org.litepal.LitePal
+import org.litepal.crud.LitePalSupport
 import java.text.SimpleDateFormat
 
 /**
  * Created by Stan
  * on 2019/6/14.
  */
+@SuppressLint("SimpleDateFormat")
 class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
     companion object {
         const val IMG_TRANSITION = "IMG_TRANSITION"
@@ -65,8 +70,10 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
     private fun savePlayVideo() {
        //TODO 添加观看记录，使用Android 数据库 问题： 取出的数据为空
         doAsync {
-            val historyBean = WatchHistoryBean(itemData)
-            historyBean.save()
+            val playInfo = itemData.data?.playInfo
+            LitePal.saveAll(playInfo)
+            val historyBean = itemData.data?.let { NewWatchHistoryBean(it.title,it.category,it.duration,it.cover.detail,it.cover.feed,playInfo!!) }
+            historyBean?.save()
         }
 
     }

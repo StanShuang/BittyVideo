@@ -9,9 +9,9 @@ import android.util.Log
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
-import com.squareup.leakcanary.BuildConfig
 import com.squareup.leakcanary.LeakCanary
 import com.squareup.leakcanary.RefWatcher
+import com.stan.video.bittyvideo.BuildConfig
 import com.stan.video.bittyvideo.utils.DisplayManager
 import org.litepal.LitePal
 import kotlin.properties.Delegates

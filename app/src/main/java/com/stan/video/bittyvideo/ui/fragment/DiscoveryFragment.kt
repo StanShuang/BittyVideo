@@ -43,7 +43,7 @@ class DiscoveryFragment: BaseFragment() {
         //状态栏透明和间距处理
         //状态栏透明和间距处理
         activity?.let { StatusBarUtil.darkMode(it) }
-        activity?.let { StatusBarUtil.setPaddingSmart(it, toolbar) }
+        activity?.let { StatusBarUtil.setPaddingSmart(it, mTabLayout) }
 
 
     }

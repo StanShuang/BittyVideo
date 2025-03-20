@@ -49,7 +49,7 @@ class CategoryFragment: BaseFragment(),CategoryContract.View {
             adapter = mAdapter
             addItemDecoration(object : RecyclerView.ItemDecoration(){
                 override fun getItemOffsets(outRect: Rect, view: View?, parent: RecyclerView, state: RecyclerView.State?) {
-                    val position = parent.getChildPosition(view)
+                    val position = parent.getChildAdapterPosition(view)
                     val offset = DisplayManager.dip2px(2f)!!
                     outRect.set(if (position % 2 == 0) 0 else offset,offset,if (position % 2 == 0) offset else 0,offset )
 

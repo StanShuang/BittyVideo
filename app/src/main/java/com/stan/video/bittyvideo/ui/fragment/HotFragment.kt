@@ -43,7 +43,7 @@ class HotFragment: BaseFragment(),HotTabContract.View {
     override fun initView() {
         mLayoutStatusView = multipleStatusView
         activity?.let { StatusBarUtil.darkMode(it) }
-        activity?.let { StatusBarUtil.setPaddingSmart(it,toolbar) }
+        activity?.let { StatusBarUtil.setPaddingSmart(it,mTabLayout) }
 
     }
     override fun showLoading() {
