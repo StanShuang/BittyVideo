@@ -53,7 +53,7 @@ class MainActivity: BaseActivity() {
      * 初始化底部菜单
      */
     private fun initTab() {
-        (0 until mTilte.size).mapTo(mTabEntities){
+        (mTilte.indices).mapTo(mTabEntities){
             TabEntity(mTilte[it],mIconSelectIds[it],mIconUnSelectIds[it])
         }
         //为Tab赋值

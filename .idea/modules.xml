@@ -4,7 +4,13 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BittyVideo.iml" filepath="$PROJECT_DIR$/BittyVideo.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BittyVideo.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BittyVideo.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BittyVideo.app.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BittyVideo.app.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BittyVideo.app.main.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BittyVideo.app.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/BittyVideo.app.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/app/BittyVideo.app.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/multiple-status-view/BittyVideo.multiple-status-view.iml" filepath="$PROJECT_DIR$/.idea/modules/multiple-status-view/BittyVideo.multiple-status-view.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/multiple-status-view/BittyVideo.multiple-status-view.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/multiple-status-view/BittyVideo.multiple-status-view.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/multiple-status-view/BittyVideo.multiple-status-view.main.iml" filepath="$PROJECT_DIR$/.idea/modules/multiple-status-view/BittyVideo.multiple-status-view.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/multiple-status-view/BittyVideo.multiple-status-view.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/multiple-status-view/BittyVideo.multiple-status-view.unitTest.iml" />
     </modules>
   </component>
 </project>
