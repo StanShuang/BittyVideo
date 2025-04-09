@@ -1,14 +1,14 @@
 package com.stan.video.bittyvideo.base
 
 import android.os.Bundle
-import android.support.annotation.LayoutRes
-import android.support.annotation.NonNull
-import android.support.v4.app.Fragment
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.annotation.LayoutRes
+import androidx.annotation.NonNull
+import androidx.fragment.app.Fragment
 import com.classic.common.MultipleStatusView
 import com.stan.video.bittyvideo.app.MyApplication
 import pub.devrel.easypermissions.AppSettingsDialog
@@ -82,7 +82,6 @@ abstract class BaseFragment: Fragment(),EasyPermissions.PermissionCallbacks {
 
     override fun onDestroy() {
         super.onDestroy()
-        activity?.let { MyApplication.getRefWatcher(it)?.watch(activity) }
     }
 
 

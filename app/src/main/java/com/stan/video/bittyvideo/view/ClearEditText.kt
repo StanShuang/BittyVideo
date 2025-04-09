@@ -15,7 +15,7 @@ import com.stan.video.bittyvideo.R
  * on 2019/6/27.
  * 带删除按钮的EditView
  */
-class ClearEditText @JvmOverloads constructor(context: Context,attrs: AttributeSet? = null,defStyle: Int = android.R.attr.editTextStyle) : EditText(context,attrs,defStyle), View.OnFocusChangeListener,TextWatcher {
+class ClearEditText @JvmOverloads constructor(context: Context,attrs: AttributeSet? = null,defStyle: Int = android.R.attr.editTextStyle) : androidx.appcompat.widget.AppCompatEditText(context,attrs,defStyle), View.OnFocusChangeListener,TextWatcher {
    //EditText 右侧的删除图标
     private var mClearDrawable: Drawable? = null
     private var hasFocus: Boolean = false
@@ -81,7 +81,7 @@ class ClearEditText @JvmOverloads constructor(context: Context,attrs: AttributeS
     override fun onFocusChange(v: View?, hasFocus: Boolean) {
         this.hasFocus = hasFocus
         if (hasFocus) {
-            setClearIconVisible(text.isNotEmpty())
+            setClearIconVisible(text!!.isNotEmpty())
         } else {
             setClearIconVisible(false)
         }

@@ -1,15 +1,13 @@
 package com.stan.video.bittyvideo.base
 
-import android.annotation.SuppressLint
 import android.content.Context
-import android.inputmethodservice.InputMethodService
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.classic.common.MultipleStatusView
 import com.stan.video.bittyvideo.app.MyApplication
 import pub.devrel.easypermissions.AppSettingsDialog
@@ -126,6 +124,5 @@ abstract class BaseActivity: AppCompatActivity(),EasyPermissions.PermissionCallb
 
     override fun onDestroy() {
         super.onDestroy()
-        MyApplication.getRefWatcher(this)?.watch(this)
     }
 }

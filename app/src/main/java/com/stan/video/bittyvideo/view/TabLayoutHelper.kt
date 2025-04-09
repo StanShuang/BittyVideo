@@ -2,8 +2,8 @@ package com.stan.video.bittyvideo.view
 
 import android.annotation.SuppressLint
 import android.os.Build
-import android.support.design.widget.TabLayout
 import android.widget.LinearLayout
+import com.google.android.material.tabs.TabLayout
 import com.stan.video.bittyvideo.utils.DisplayManager
 import java.lang.reflect.Field
 
@@ -11,6 +11,7 @@ import java.lang.reflect.Field
  * Created by Stan
  * on 2019/6/24.
  * 设置Tablayout的下滑先长度
+ * 反射获取方法从mTabStrip 变为 slidingTabIndicator 对应TabLayout更新到 Androidx
  */
 object TabLayoutHelper{
 
@@ -19,7 +20,7 @@ object TabLayoutHelper{
         val tabLayoutClass = tabLayout.javaClass
         var tabStrip: Field? = null
         try {
-            tabStrip = tabLayoutClass.getDeclaredField("mTabStrip")
+            tabStrip = tabLayoutClass.getDeclaredField("slidingTabIndicator")
             tabStrip!!.isAccessible = true
         } catch (e: NoSuchFieldException) {
             e.printStackTrace()

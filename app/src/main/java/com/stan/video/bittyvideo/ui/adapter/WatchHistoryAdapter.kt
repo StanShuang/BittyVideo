@@ -3,17 +3,17 @@ package com.stan.video.bittyvideo.ui.adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.content.ContextCompat
-import android.support.v4.util.Pair
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.content.ContextCompat
+import androidx.core.util.Pair
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.ext.durationFormat
-import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.model.bean.NewWatchHistoryBean
 import com.stan.video.bittyvideo.mvp.model.bean.WatchHistoryBean
 import com.stan.video.bittyvideo.ui.activity.VideoDetailActivity
@@ -39,7 +39,7 @@ class WatchHistoryAdapter(context: Context, itemLists: ArrayList<NewWatchHistory
             setText(R.id.tv_tag_card, "#${item.category} / ${durationFormat(item.duration)}")
             setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(item.detail) {
                 override fun loadImage(iv: ImageView, path: String) {
-                    GlideApp.with(mContext)
+                    Glide.with(mContext)
                             .load(path)
                             .placeholder(R.drawable.placeholder_banner)
                             .transition(DrawableTransitionOptions().crossFade())

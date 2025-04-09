@@ -1,9 +1,9 @@
 package com.stan.video.bittyvideo.view.adapter
 
 import android.annotation.SuppressLint
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v4.app.FragmentPagerAdapter
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 
 /**
  * Created by Stan
@@ -13,10 +13,10 @@ import android.support.v4.app.FragmentPagerAdapter
  * 如果需要处理有很多页，并且数据动态性较大、占用内存较多的情况，
  * 应该使用FragmentStatePagerAdapter。
  */
-class BaseFragmentAdapter: FragmentPagerAdapter{
+class BaseFragmentAdapter: FragmentPagerAdapter {
     private var fragmentList: List<Fragment>? = ArrayList()
     private var mTitles: List<String>? = null
-    constructor(fm: FragmentManager,fragemntList: List<Fragment>) : super(fm){
+    constructor(fm: FragmentManager, fragemntList: List<Fragment>) : super(fm){
         this.fragmentList = fragmentList
     }
     constructor(fm: FragmentManager, fragemntList: List<Fragment>, mTitles: List<String>): super(fm){

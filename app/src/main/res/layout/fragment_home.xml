@@ -28,17 +28,17 @@
                     app:errorView="@layout/layout_error_view"
                     app:loadingView="@layout/layout_loading_view"
                     app:noNetworkView="@layout/layout_network_view">
-                    <android.support.v7.widget.RecyclerView
+                    <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/mRecyclerView"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:clipToPadding="false"
                         android:paddingBottom="@dimen/padding_tab_layout_bottom">
 
-                    </android.support.v7.widget.RecyclerView>
+                    </androidx.recyclerview.widget.RecyclerView>
 
                 </com.classic.common.MultipleStatusView>
-                <android.support.v7.widget.Toolbar
+                <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar"
                     android:layout_width="match_parent"
                     android:layout_height="?attr/actionBarSize"
@@ -71,7 +71,7 @@
                     </RelativeLayout>
 
 
-                </android.support.v7.widget.Toolbar>
+                </androidx.appcompat.widget.Toolbar>
             </FrameLayout>
 
 

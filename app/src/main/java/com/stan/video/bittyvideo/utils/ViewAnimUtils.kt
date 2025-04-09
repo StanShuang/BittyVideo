@@ -5,13 +5,12 @@ import android.animation.AnimatorListenerAdapter
 import android.annotation.TargetApi
 import android.content.Context
 import android.os.Build
-import android.support.annotation.ColorInt
-import android.support.annotation.ColorRes
-import android.support.annotation.RequiresApi
-import android.support.v4.content.ContextCompat
+import androidx.core.content.ContextCompat
 import android.view.View
 import android.view.ViewAnimationUtils
 import android.view.animation.AccelerateDecelerateInterpolator
+import androidx.annotation.ColorRes
+import androidx.annotation.RequiresApi
 
 /**
  * Created by Stan
@@ -35,13 +34,13 @@ object ViewAnimUtils {
         anim.duration = 300
         anim.interpolator = AccelerateDecelerateInterpolator()
         anim.addListener(object : AnimatorListenerAdapter(){
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
                 view.visibility = View.VISIBLE
                 listener.onRevealShow()
             }
 
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
                 super.onAnimationStart(animation)
                 view.setBackgroundColor(ContextCompat.getColor(context,color))
             }
@@ -60,13 +59,13 @@ object ViewAnimUtils {
         anim.duration = 300
         anim.interpolator =AccelerateDecelerateInterpolator()
         anim.addListener(object : AnimatorListenerAdapter(){
-            override fun onAnimationEnd(animation: Animator?) {
+            override fun onAnimationEnd(animation: Animator) {
                 super.onAnimationEnd(animation)
                 view.visibility = View.VISIBLE
                 listener.onRevealHide()
             }
 
-            override fun onAnimationStart(animation: Animator?) {
+            override fun onAnimationStart(animation: Animator) {
                 super.onAnimationStart(animation)
                 view.setBackgroundColor(ContextCompat.getColor(context,color))
             }

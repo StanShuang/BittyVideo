@@ -2,12 +2,12 @@ package com.stan.video.bittyvideo.ui.adapter
 
 import android.app.Activity
 import android.content.Context
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.stan.video.bittyvideo.R
-import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.view.MultipleType
 import com.stan.video.bittyvideo.view.ViewHolder
@@ -45,7 +45,7 @@ class FollowAdapter(mContext: Context,lists: ArrayList<HomeBean.Issue.Item>):
         val headerData = data.data?.header
         holder.setImagePath(R.id.iv_avater,object : ViewHolder.HolderImageLoader(headerData?.icon!!){
             override fun loadImage(iv: ImageView, path: String) {
-                GlideApp.with(mContext)
+                Glide.with(mContext)
                         .load(path)
                         .placeholder(R.mipmap.default_avatar).circleCrop()
                         .transition(DrawableTransitionOptions().crossFade())

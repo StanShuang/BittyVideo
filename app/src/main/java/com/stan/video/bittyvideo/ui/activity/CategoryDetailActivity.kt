@@ -1,11 +1,11 @@
 package com.stan.video.bittyvideo.ui.activity
 
 import android.graphics.Color
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.base.BaseActivity
-import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.contract.CategoryDetailContract
 import com.stan.video.bittyvideo.mvp.model.bean.CategoryBean
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
@@ -45,9 +45,9 @@ class CategoryDetailActivity: BaseActivity() , CategoryDetailContract.View{
             layoutManager = LinearLayoutManager(this@CategoryDetailActivity)
             adapter = mAdapter
             addOnScrollListener(object : RecyclerView.OnScrollListener(){
-                override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
-                    val itemCount = mRecyclerView.layoutManager.itemCount
+                    val itemCount = mRecyclerView.layoutManager!!.itemCount
                     val lastVisibleItem = (mRecyclerView.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
                     if(!loadingMore && lastVisibleItem == (itemCount -1)){
                         loadingMore = true
@@ -62,7 +62,7 @@ class CategoryDetailActivity: BaseActivity() , CategoryDetailContract.View{
     }
 
     private fun setTextView() {
-        GlideApp.with(this)
+        Glide.with(this)
                 .load(categoryData?.headerImage)
                 .placeholder(R.color.color_darker_gray)
                 .into(imageView)

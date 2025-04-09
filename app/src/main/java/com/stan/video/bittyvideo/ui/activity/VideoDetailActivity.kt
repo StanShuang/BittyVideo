@@ -4,12 +4,13 @@ import android.annotation.SuppressLint
 import android.annotation.TargetApi
 import android.content.res.Configuration
 import android.os.Build
-import android.support.v4.view.ViewCompat
-import android.support.v7.widget.LinearLayoutManager
+import androidx.core.view.ViewCompat
 import android.transition.Transition
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.orhanobut.logger.Logger
@@ -21,7 +22,6 @@ import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.base.BaseActivity
 import com.stan.video.bittyvideo.ext.showToast
-import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.contract.VideoDetailContract
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.mvp.model.bean.NewWatchHistoryBean
@@ -123,7 +123,7 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
         //增加封面
         val imageView = ImageView(this)
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
-        GlideApp.with(this)
+        Glide.with(this)
                 .load(itemData.data?.cover?.feed)
                 .centerCrop()
                 .into(imageView)
@@ -232,7 +232,7 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
     /**
      * 系统设置改变也可以触发
      */
-    override fun onConfigurationChanged(newConfig: Configuration?) {
+    override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
         if(isPlay && !isPause){
             mVideoView.onConfigurationChanged(this,newConfig,orientatinUtils)
@@ -314,7 +314,7 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
      * 设置背景颜色
      */
     override fun setBackground(url: String) {
-        GlideApp.with(this)
+        Glide.with(this)
                 .load(url)
                 .centerCrop()
                 .format(DecodeFormat.PREFER_ARGB_8888)

@@ -3,15 +3,15 @@ package com.stan.video.bittyvideo.ui.adapter
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import android.support.v4.app.ActivityCompat
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v4.util.Pair
+import androidx.core.app.ActivityCompat
+import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import android.view.View
 import android.widget.ImageView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.ext.durationFormat
-import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.view.ViewHolder
 import com.stan.video.bittyvideo.view.adapter.CommonAdapter
@@ -27,7 +27,7 @@ class FollwHorizontalAdapter(mContext: Context,items: ArrayList<HomeBean.Issue.I
         val itemData = data.data
         holder.setImagePath(R.id.iv_cover_feed,object : ViewHolder.HolderImageLoader(itemData?.cover?.feed!!){
             override fun loadImage(iv: ImageView, path: String) {
-                GlideApp.with(mContext)
+                Glide.with(mContext)
                         .load(path)
                         .placeholder(R.drawable.placeholder_banner)
                         .transition(DrawableTransitionOptions().crossFade())

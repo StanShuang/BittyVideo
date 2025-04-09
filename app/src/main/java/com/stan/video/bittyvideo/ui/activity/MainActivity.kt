@@ -2,8 +2,8 @@ package com.stan.video.bittyvideo.ui.activity
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.support.v4.app.FragmentTransaction
 import android.view.KeyEvent
+import androidx.fragment.app.FragmentTransaction
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.flyco.tablayout.listener.OnTabSelectListener
 import com.stan.video.bittyvideo.R
@@ -137,12 +137,11 @@ class MainActivity: BaseActivity() {
 
     }
 
-    @SuppressLint("MissingSuperCall")
-    override fun onSaveInstanceState(outState: Bundle?) {
-//        super.onSaveInstanceState(outState)
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
         //记录fragment的位置,防止崩溃 activity被系统回收时，fragment错乱
         if (tab_layout != null) {
-            outState?.putInt("currTabIndex", mIndex)
+            outState.putInt("currTabIndex", mIndex)
         }
     }
 

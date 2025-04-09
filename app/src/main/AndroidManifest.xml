@@ -28,6 +28,7 @@
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".ui.activity.SplashActivity"
             android:screenOrientation="fullSensor"
+            android:exported="true"
             android:theme="@style/AppTheme.NoActionBar.FullScreent">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

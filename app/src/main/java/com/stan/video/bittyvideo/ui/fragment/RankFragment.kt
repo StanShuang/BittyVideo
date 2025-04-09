@@ -1,7 +1,7 @@
 package com.stan.video.bittyvideo.ui.fragment
 
 import android.os.Bundle
-import android.support.v7.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.base.BaseFragment
 import com.stan.video.bittyvideo.ext.showToast

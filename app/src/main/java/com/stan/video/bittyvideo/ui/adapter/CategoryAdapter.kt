@@ -7,10 +7,10 @@ import android.graphics.Typeface
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.app.MyApplication
-import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.mvp.model.bean.CategoryBean
 import com.stan.video.bittyvideo.view.ViewHolder
 import com.stan.video.bittyvideo.view.adapter.CommonAdapter
@@ -36,7 +36,7 @@ class CategoryAdapter(mContext: Context,categoryList: ArrayList<CategoryBean>,la
         holder.getView<TextView>(R.id.tv_category_name).typeface = typeFace
         holder.setImagePath(R.id.iv_category,object : ViewHolder.HolderImageLoader(data.bgPicture){
             override fun loadImage(iv: ImageView, path: String) {
-                GlideApp.with(mContext)
+                Glide.with(mContext)
                         .load(path)
                         .placeholder(R.color.color_darker_gray)
                         .transition(DrawableTransitionOptions().crossFade())

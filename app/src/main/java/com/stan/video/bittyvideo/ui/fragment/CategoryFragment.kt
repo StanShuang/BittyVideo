@@ -3,10 +3,9 @@ package com.stan.video.bittyvideo.ui.fragment
 import android.graphics.Rect
 import android.os.Bundle
 import android.os.LocaleList
-import android.support.v7.widget.GridLayoutManager
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.view.View
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.base.BaseFragment
 import com.stan.video.bittyvideo.ext.showToast
@@ -48,7 +47,7 @@ class CategoryFragment: BaseFragment(),CategoryContract.View {
             layoutManager = GridLayoutManager(activity,2)
             adapter = mAdapter
             addItemDecoration(object : RecyclerView.ItemDecoration(){
-                override fun getItemOffsets(outRect: Rect, view: View?, parent: RecyclerView, state: RecyclerView.State?) {
+                override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
                     val position = parent.getChildAdapterPosition(view)
                     val offset = DisplayManager.dip2px(2f)!!
                     outRect.set(if (position % 2 == 0) 0 else offset,offset,if (position % 2 == 0) offset else 0,offset )

@@ -3,10 +3,10 @@ package com.stan.video.bittyvideo.ui.fragment
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
-import android.support.v4.app.ActivityOptionsCompat
-import android.support.v7.widget.DefaultItemAnimator
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
+import androidx.core.app.ActivityOptionsCompat
+import androidx.recyclerview.widget.DefaultItemAnimator
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.orhanobut.logger.Logger
 import com.scwang.smartrefresh.header.MaterialHeader
 import com.stan.video.bittyvideo.R
@@ -103,7 +103,7 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
                 //可见的item数量
                 val childcount = recyclerView.childCount
                 //整体的数量
-                val itemcount = recyclerView.layoutManager.itemCount
+                val itemcount = recyclerView.layoutManager?.itemCount
                 //可见的第一个item的位置
                 val fistVisbleItem =(recyclerView.layoutManager as LinearLayoutManager).findFirstVisibleItemPosition()
                 if(fistVisbleItem + childcount == itemcount){
@@ -116,7 +116,7 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
             }
         }
         //RecyclerView滚动的时候调用
-        override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
             super.onScrolled(recyclerView, dx, dy)
             val currentVisibleItmePosition = linearLayoutManager.findFirstVisibleItemPosition()
             if(currentVisibleItmePosition == 0){

@@ -1,9 +1,8 @@
 package com.stan.video.bittyvideo.ui.activity
 
 import android.annotation.SuppressLint
-import android.support.v4.content.ContextCompat
-import android.support.v4.widget.NestedScrollView
-import android.util.Log
+import androidx.core.content.ContextCompat
+import androidx.core.widget.NestedScrollView
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.scwang.smartrefresh.layout.api.RefreshHeader

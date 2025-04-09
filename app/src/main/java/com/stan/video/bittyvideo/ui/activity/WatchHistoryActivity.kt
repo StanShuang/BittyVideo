@@ -1,13 +1,11 @@
 package com.stan.video.bittyvideo.ui.activity
 
-import android.os.Looper
-import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.base.BaseActivity
 import com.stan.video.bittyvideo.mvp.model.bean.NewWatchHistoryBean
 
-import com.stan.video.bittyvideo.mvp.model.bean.WatchHistoryBean
 import com.stan.video.bittyvideo.ui.adapter.WatchHistoryAdapter
 import com.stan.video.bittyvideo.utils.StatusBarUtil
 import kotlinx.android.synthetic.main.layout_watch_history.*

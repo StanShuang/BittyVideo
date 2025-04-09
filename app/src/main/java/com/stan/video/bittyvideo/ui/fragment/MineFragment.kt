@@ -2,7 +2,6 @@ package com.stan.video.bittyvideo.ui.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import android.support.v4.app.Fragment
 import android.view.View
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.base.BaseFragment

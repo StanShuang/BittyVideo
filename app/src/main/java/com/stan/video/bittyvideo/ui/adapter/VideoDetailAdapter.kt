@@ -6,10 +6,10 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.app.MyApplication
 import com.stan.video.bittyvideo.ext.durationFormat
-import com.stan.video.bittyvideo.glide.GlideApp
 import com.stan.video.bittyvideo.glide.GlideRoundTransform
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.view.MultipleType
@@ -96,7 +96,7 @@ class VideoDetailAdapter(mContext: Context,data: ArrayList<HomeBean.Issue.Item>)
                     setText(R.id.tv_tag_card, "#${data.data.category} / ${durationFormat(data.data.duration)}")
                     setImagePath(R.id.iv_video_small_card, object : ViewHolder.HolderImageLoader(data.data.cover.detail) {
                         override fun loadImage(iv: ImageView, path: String) {
-                            GlideApp.with(mContext)
+                            Glide.with(mContext)
                                     .load(path)
                                     .optionalTransform(GlideRoundTransform())
                                     .placeholder(R.drawable.placeholder_banner)
@@ -135,7 +135,7 @@ class VideoDetailAdapter(mContext: Context,data: ArrayList<HomeBean.Issue.Item>)
                 setImagePath(R.id.iv_avatar, object : ViewHolder.HolderImageLoader(data.data.author.icon) {
                     override fun loadImage(iv: ImageView, path: String) {
                         //加载头像
-                        GlideApp.with(mContext)
+                        Glide.with(mContext)
                                 .load(path)
                                 .placeholder(R.mipmap.default_avatar).circleCrop()
                                 .into(iv)

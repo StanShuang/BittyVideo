@@ -4,13 +4,11 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import android.os.Bundle
-import android.support.multidex.MultiDexApplication
 import android.util.Log
+import androidx.multidex.MultiDexApplication
 import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
-import com.squareup.leakcanary.LeakCanary
-import com.squareup.leakcanary.RefWatcher
 import com.stan.video.bittyvideo.BuildConfig
 import com.stan.video.bittyvideo.utils.DisplayManager
 import org.litepal.LitePal
@@ -21,20 +19,14 @@ import kotlin.properties.Delegates
  * on 2019/5/31.
  */
 class MyApplication: MultiDexApplication() {
-    private var refWatcher: RefWatcher? = null
     companion object {
         private val TAG = "MyApplication"
         var context: Context by Delegates.notNull()
             private set
-        fun getRefWatcher(context: Context): RefWatcher?{
-            val myApplicaction = context.applicationContext as MyApplication
-            return myApplicaction.refWatcher
-        }
     }
     override fun onCreate() {
         super.onCreate()
         context = applicationContext
-        refWatcher = setupLeakCanary()
         initConfig()
         LitePal.initialize(this)
         DisplayManager.init(this)
@@ -58,19 +50,12 @@ class MyApplication: MultiDexApplication() {
         })
     }
 
-    private fun setupLeakCanary(): RefWatcher? {
-        return if(LeakCanary.isInAnalyzerProcess(this)){
-            RefWatcher.DISABLED
-        }else{
-            LeakCanary.install(this)
-        }
-    }
     private val mActivityLifecycleCallbacks = object : Application.ActivityLifecycleCallbacks{
-        override fun onActivityPaused(activity: Activity?) {
+        override fun onActivityPaused(activity: Activity) {
 
         }
 
-        override fun onActivityResumed(activity: Activity?) {
+        override fun onActivityResumed(activity: Activity) {
 
         }
 
@@ -82,11 +67,11 @@ class MyApplication: MultiDexApplication() {
             Log.d(TAG, "onDestroy: " + activity.componentName.className)
         }
 
-        override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
+        override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
 
         }
 
-        override fun onActivityStopped(activity: Activity?) {
+        override fun onActivityStopped(activity: Activity) {
 
         }
 

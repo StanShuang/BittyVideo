@@ -3,8 +3,6 @@ package com.stan.video.bittyvideo.ui.activity
 import android.annotation.TargetApi
 import android.graphics.Typeface
 import android.os.Build
-import android.support.v7.widget.LinearLayoutManager
-import android.support.v7.widget.RecyclerView
 import android.transition.Fade
 import android.transition.Transition
 import android.transition.TransitionInflater
@@ -13,6 +11,8 @@ import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.flexbox.*
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.app.MyApplication
@@ -70,11 +70,11 @@ class SearchActivity:BaseActivity() ,SearchContract.View{
             layoutManager = LinearLayoutManager(this@SearchActivity)
             adapter = mResultAdapter
             addOnScrollListener(object : RecyclerView.OnScrollListener(){
-                override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                     super.onScrollStateChanged(recyclerView, newState)
-                    val itemCount = mRecyclerView_result.layoutManager.itemCount
+                    val itemCount = mRecyclerView_result.layoutManager?.itemCount
                     val lastVisibleItem = (mRecyclerView_result.layoutManager as LinearLayoutManager).findLastVisibleItemPosition()
-                    if(!loadingMore && lastVisibleItem == itemCount - 1){
+                    if(!loadingMore && lastVisibleItem == itemCount!! - 1){
                         loadingMore = true
                         mPresenter.loadMoreData()
                     }

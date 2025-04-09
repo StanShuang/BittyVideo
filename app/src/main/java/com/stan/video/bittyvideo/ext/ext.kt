@@ -1,8 +1,8 @@
 package com.stan.video.bittyvideo.ext
 
 import android.content.Context
-import android.support.v4.app.Fragment
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.stan.video.bittyvideo.app.MyApplication
 
 /**
