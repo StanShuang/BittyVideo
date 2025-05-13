@@ -50,7 +50,20 @@
     <string name="main_discovery">发现</string>
     <string name="main_hot">热门</string>
     <string name="main_mine">我的</string>
+    <string name="community">社区</string>
 
     <string name="main_quit">再按一次退出程序</string>
 
+    <string name="search_own">搜索视频、作者、用户及标签</string>
+
+    <string name="input_keywords_tips">请输入搜索关键字</string>
+
+    <string name="currently_not_supported">该功能即将开放，敬请期待</string>
+    <string name="hot_keywords">热搜关键词</string>
+
+    <string name="delete">删除</string>
+
+    <string name="commend">推荐</string>
+    <string name="daily">日报</string>
+    <string name="follow">关注</string>
 </resources>

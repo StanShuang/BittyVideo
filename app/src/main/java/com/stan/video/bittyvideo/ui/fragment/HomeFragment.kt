@@ -15,6 +15,7 @@ import com.stan.video.bittyvideo.ext.showToast
 import com.stan.video.bittyvideo.mvp.contract.HomeContract
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.mvp.presenter.HomePresenter
+import com.stan.video.bittyvideo.mvvm.fragment.SearchFragment
 import com.stan.video.bittyvideo.net.exception.ErrorStatus
 import com.stan.video.bittyvideo.ui.activity.SearchActivity
 import com.stan.video.bittyvideo.ui.adapter.HomeAdapter
@@ -76,7 +77,9 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
         mRefreshLayout.setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
 
         iv_search.setOnClickListener {
-            openSearchActivity()
+            //TODO 切换搜索页面，采用MVVM架构
+            SearchFragment.switchFragment(requireActivity())
+//            openSearchActivity()
         }
         mLayoutStatusView = multipleStatusView
         mRecyclerView.addOnScrollListener(scrollListener)
@@ -88,12 +91,8 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
     }
 
     private fun openSearchActivity() {
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
-            val pair = activity?.let { ActivityOptionsCompat.makeSceneTransitionAnimation(it,iv_search,iv_search.transitionName) }
-            startActivity(Intent(activity,SearchActivity :: class.java),pair?.toBundle())
-        }else{
-            startActivity(Intent(activity,SearchActivity :: class.java))
-        }
+        val pair = activity?.let { ActivityOptionsCompat.makeSceneTransitionAnimation(it,iv_search,iv_search.transitionName) }
+        startActivity(Intent(activity,SearchActivity :: class.java),pair?.toBundle())
     }
 
     private val scrollListener = object : RecyclerView.OnScrollListener(){

@@ -225,8 +225,7 @@
         android:background="@color/color_title_bg"
         app:layout_collapseMode="pin"
         app:navigationIcon="?attr/homeAsUpIndicator">
-
-        <org.jetbrains.anko.appcompat.v7._ButtonBarLayout
+        <LinearLayout
             android:id="@+id/buttonBarLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -250,7 +249,7 @@
                 android:text="@string/nickname"
                 android:textColor="@color/color_black"
                 android:textSize="16sp" />
-        </org.jetbrains.anko.appcompat.v7._ButtonBarLayout>
+        </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
 

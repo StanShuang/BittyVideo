@@ -15,4 +15,11 @@
     <dimen name="textSize_title">18sp</dimen>
 
     <dimen name="division_line">0.5dp</dimen>
+
+    <!-- 常见列表左边or右边，距离屏幕间隔。 -->
+    <dimen name="listSpaceSize">14dp</dimen>
+
+    <!-- 其他界面标题栏大小 -->
+    <dimen name="actionBarSizeSecondary">44dp</dimen>
+    <color name="colorTextSecondary">#888888</color>
 </resources>

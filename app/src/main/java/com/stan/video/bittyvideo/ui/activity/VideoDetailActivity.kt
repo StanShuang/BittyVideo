@@ -6,7 +6,6 @@ import android.content.res.Configuration
 import android.os.Build
 import androidx.core.view.ViewCompat
 import android.transition.Transition
-import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -20,22 +19,20 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer
 import com.shuyu.gsyvideoplayer.video.base.GSYVideoPlayer
 import com.stan.video.bittyvideo.R
-import com.stan.video.bittyvideo.base.BaseActivity
+import com.stan.video.bittyvideo.base.BaseViewActivity
+import com.stan.video.bittyvideo.databinding.ActivityVideoDetailBinding
 import com.stan.video.bittyvideo.ext.showToast
 import com.stan.video.bittyvideo.mvp.contract.VideoDetailContract
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.mvp.model.bean.NewWatchHistoryBean
-import com.stan.video.bittyvideo.mvp.model.bean.WatchHistoryBean
 import com.stan.video.bittyvideo.mvp.presenter.VideoDetailPresenter
 import com.stan.video.bittyvideo.ui.adapter.VideoDetailAdapter
 import com.stan.video.bittyvideo.utils.CleanLeakUtils
 import com.stan.video.bittyvideo.utils.Constant
 import com.stan.video.bittyvideo.utils.StatusBarUtil
-import kotlinx.android.synthetic.main.activity_video_detail.*
 import com.stan.video.bittyvideo.view.VideoListener
 import org.jetbrains.anko.doAsync
 import org.litepal.LitePal
-import org.litepal.crud.LitePalSupport
 import java.text.SimpleDateFormat
 
 /**
@@ -43,13 +40,16 @@ import java.text.SimpleDateFormat
  * on 2019/6/14.
  */
 @SuppressLint("SimpleDateFormat")
-class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
+class VideoDetailActivity : BaseViewActivity(), VideoDetailContract.View {
+    private lateinit var binding: ActivityVideoDetailBinding
+
     companion object {
         const val IMG_TRANSITION = "IMG_TRANSITION"
         const val TRANSITION = "TRANSITION"
     }
+
     private val mPresenter by lazy { VideoDetailPresenter() }
-    private val mAdapter by lazy { VideoDetailAdapter(this,itemList) }
+    private val mAdapter by lazy { VideoDetailAdapter(this, itemList) }
     private val mFormat by lazy { SimpleDateFormat("yyyyMMddHHmmss"); }
     private var itemList = java.util.ArrayList<HomeBean.Issue.Item>()
     private lateinit var itemData: HomeBean.Issue.Item
@@ -59,20 +59,32 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
     private var isPause: Boolean = false
     private var transition: Transition? = null
     private var mMaterialHeader: MaterialHeader? = null
-    override fun layoutId(): Int = R.layout.activity_video_detail
+    override fun layoutView(): View {
+        binding = ActivityVideoDetailBinding.inflate(layoutInflater)
+        return binding.root
+    }
 
     override fun initData() {
         itemData = intent.getSerializableExtra(Constant.BUNDLE_VIDEO_DATA) as HomeBean.Issue.Item
-        isTransition = intent.getBooleanExtra(TRANSITION,false)
+        isTransition = intent.getBooleanExtra(TRANSITION, false)
         savePlayVideo()
     }
 
     private fun savePlayVideo() {
-       //TODO 添加观看记录，使用Android 数据库 问题： 取出的数据为空
+        //TODO 添加观看记录，使用Android 数据库 问题： 取出的数据为空
         doAsync {
             val playInfo = itemData.data?.playInfo
             LitePal.saveAll(playInfo)
-            val historyBean = itemData.data?.let { NewWatchHistoryBean(it.title,it.category,it.duration,it.cover.detail,it.cover.feed,playInfo!!) }
+            val historyBean = itemData.data?.let {
+                NewWatchHistoryBean(
+                    it.title,
+                    it.category,
+                    it.duration,
+                    it.cover.detail,
+                    it.cover.feed,
+                    playInfo!!
+                )
+            }
             historyBean?.save()
         }
 
@@ -84,27 +96,27 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
         initTransition()
         //播放视频
         initVideoViewConifig()
-        mRecyclerView.run {
+        binding.mRecyclerView.run {
             layoutManager = LinearLayoutManager(this@VideoDetailActivity)
             adapter = mAdapter
         }
         mAdapter.setOnItemDetailClick { mPresenter.loadVideoInfo(it) }
         //状态栏透明度以及间距处理
         StatusBarUtil.immersive(this)
-        StatusBarUtil.setPaddingSmart(this,mVideoView)
+        StatusBarUtil.setPaddingSmart(this, binding.mVideoView)
 
 
 
-        mMaterialHeader = mRefreshLayout.refreshHeader as MaterialHeader
+        mMaterialHeader = binding.mRefreshLayout.refreshHeader as MaterialHeader
         //打开下拉刷新区背景
         mMaterialHeader?.setShowBezierWave(true)
         /***  下拉刷新  ***/
         //内容跟随偏移
         //设置下拉刷新主题颜色
-        mRefreshLayout.run{
+        binding.mRefreshLayout.run {
             setEnableHeaderTranslationContent(true)
-            setPrimaryColorsId(R.color.color_light_black,R.color.color_title_bg)
-            setOnRefreshListener{ loadVideoInfo() }
+            setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
+            setOnRefreshListener { loadVideoInfo() }
         }
 
     }
@@ -114,27 +126,28 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
      */
     private fun initVideoViewConifig() {
         //设置旋转
-        orientatinUtils = OrientationUtils(this,mVideoView)
+        orientatinUtils = OrientationUtils(this, binding.mVideoView)
         //是否旋转
-        mVideoView.isRotateViewAuto = false
+        binding.mVideoView.isRotateViewAuto = false
         //是否可以滑动整体
-        mVideoView.setIsTouchWiget(true)
+        binding.mVideoView.setIsTouchWiget(true)
 
         //增加封面
         val imageView = ImageView(this)
         imageView.scaleType = ImageView.ScaleType.CENTER_CROP
         Glide.with(this)
-                .load(itemData.data?.cover?.feed)
-                .centerCrop()
-                .into(imageView)
-        mVideoView.thumbImageView = imageView
-        mVideoView.setStandardVideoAllCallBack(object : VideoListener {
+            .load(itemData.data?.cover?.feed)
+            .centerCrop()
+            .into(imageView)
+        binding.mVideoView.thumbImageView = imageView
+        binding.mVideoView.setStandardVideoAllCallBack(object : VideoListener {
             override fun onPrepared(url: String, vararg objects: Any) {
                 super.onPrepared(url, *objects)
                 //开始播放后才能旋转屏幕
-                mVideoView.isRotateViewAuto = true
+                binding.mVideoView.isRotateViewAuto = true
                 isPlay = true
             }
+
             override fun onAutoComplete(url: String, vararg objects: Any) {
                 super.onAutoComplete(url, *objects)
                 Logger.d("***** onAutoPlayComplete **** ")
@@ -159,16 +172,16 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
 
         })
         //设置返回按键
-        mVideoView.backButton.setOnClickListener({onBackPressed()})
+        binding.mVideoView.backButton.setOnClickListener({ onBackPressed() })
         //设置全屏按键功能
-        mVideoView.fullscreenButton.setOnClickListener {
+        binding.mVideoView.fullscreenButton.setOnClickListener {
             //直接横屏
             orientatinUtils?.resolveByClick()
             //第一个true是否需要隐藏actionbar，第二个true是否需要隐藏statusbar
-            mVideoView.startWindowFullscreen(this,true,true)
+            binding.mVideoView.startWindowFullscreen(this, true, true)
         }
         //锁屏事件
-        mVideoView.setLockClickListener(object : LockClickListener{
+        binding.mVideoView.setLockClickListener(object : LockClickListener {
             override fun onClick(view: View?, lock: Boolean) {
                 //配合下方的onConfigurationChanged
                 orientatinUtils?.isEnable = !lock
@@ -178,27 +191,30 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
 
 
     }
+
     /**
      * 1.加载视频信息
      */
     fun loadVideoInfo() {
         mPresenter.loadVideoInfo(itemData)
     }
+
     private fun initTransition() {
-        if(isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP){
+        if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             postponeEnterTransition()
-            ViewCompat.setTransitionName(mVideoView, IMG_TRANSITION)
+            ViewCompat.setTransitionName(binding.mVideoView, IMG_TRANSITION)
             addTransitionListener()
             startPostponedEnterTransition()
-        }else{
+        } else {
             loadVideoInfo()
 
         }
     }
+
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     private fun addTransitionListener() {
         transition = window.sharedElementEnterTransition
-        transition?.addListener(object : Transition.TransitionListener{
+        transition?.addListener(object : Transition.TransitionListener {
             override fun onTransitionEnd(transition: Transition?) {
                 loadVideoInfo()
                 transition?.removeListener(this)
@@ -234,8 +250,8 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
      */
     override fun onConfigurationChanged(newConfig: Configuration) {
         super.onConfigurationChanged(newConfig)
-        if(isPlay && !isPause){
-            mVideoView.onConfigurationChanged(this,newConfig,orientatinUtils)
+        if (isPlay && !isPause) {
+            binding.mVideoView.onConfigurationChanged(this, newConfig, orientatinUtils)
         }
 
     }
@@ -245,31 +261,33 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
      */
     override fun onBackPressed() {
         orientatinUtils?.backToProtVideo()
-        if(StandardGSYVideoPlayer.backFromWindowFull(this)){
+        if (StandardGSYVideoPlayer.backFromWindowFull(this)) {
             return
         }
         //释放所有
-        mVideoView.setStandardVideoAllCallBack(null)
+        binding.mVideoView.setStandardVideoAllCallBack(null)
         GSYVideoPlayer.releaseAllVideos()
-        if(isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) run{
+        if (isTransition && Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) run {
             super.onBackPressed()
-        }else{
+        } else {
             finish()
-            overridePendingTransition(R.anim.anim_out,R.anim.anim_in)
+            overridePendingTransition(R.anim.anim_out, R.anim.anim_in)
         }
 
     }
-    private fun getCurPlay(): GSYVideoPlayer{
-        return if(mVideoView.fullWindowPlayer != null){
-            mVideoView.fullWindowPlayer
-        }else{
-            mVideoView
+
+    private fun getCurPlay(): GSYVideoPlayer {
+        return if (binding.mVideoView.fullWindowPlayer != null) {
+            binding.mVideoView.fullWindowPlayer
+        } else {
+            binding.mVideoView
         }
     }
+
     override fun onResume() {
         super.onResume()
         getCurPlay().onVideoResume()
-        isPause  = false
+        isPause = false
     }
 
     override fun onPause() {
@@ -277,6 +295,7 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
         getCurPlay().onVideoPause()
         isPause = true
     }
+
     override fun onDestroy() {
         CleanLeakUtils.fixInputMethodManagerLeak(this)
         super.onDestroy()
@@ -285,21 +304,24 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
         mPresenter.detachView()
 
     }
+
     override fun showLoading() {
 
     }
 
     override fun dismissLoading() {
-        mRefreshLayout.finishRefresh()
+        binding.mRefreshLayout.finishRefresh()
     }
+
     /**
      * 设置播放视频 URL
      */
     override fun setVideo(url: String) {
-        mVideoView.setUp(url,false,"")
+        binding.mVideoView.setUp(url, false, "")
         //开始自动播放
-        mVideoView.startPlayLogic()
+        binding.mVideoView.startPlayLogic()
     }
+
     /**
      * 设置视频信息
      */
@@ -307,20 +329,22 @@ class VideoDetailActivity: BaseActivity() ,VideoDetailContract.View{
         itemData = itemInfo
         mAdapter.addData(itemInfo)
         // 请求相关的最新等视频
-        mPresenter.requestRelatedVideo(itemInfo.data?.id?:0)
+        mPresenter.requestRelatedVideo(itemInfo.data?.id ?: 0)
 
     }
+
     /**
      * 设置背景颜色
      */
     override fun setBackground(url: String) {
         Glide.with(this)
-                .load(url)
-                .centerCrop()
-                .format(DecodeFormat.PREFER_ARGB_8888)
-                .transition(DrawableTransitionOptions().crossFade())
-                .into(mVideoBackground)
+            .load(url)
+            .centerCrop()
+            .format(DecodeFormat.PREFER_ARGB_8888)
+            .transition(DrawableTransitionOptions().crossFade())
+            .into(binding.mVideoBackground)
     }
+
     /**
      * 设置相关的数据视频
      */
