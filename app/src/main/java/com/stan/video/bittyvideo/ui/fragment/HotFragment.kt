@@ -1,28 +1,32 @@
 package com.stan.video.bittyvideo.ui.fragment
 
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.google.android.material.tabs.TabLayoutMediator
-import com.stan.video.bittyvideo.R
-import com.stan.video.bittyvideo.base.BaseFragment
+import com.stan.video.bittyvideo.base.BaseViewFragment
+import com.stan.video.bittyvideo.databinding.FragmentHotBinding
 import com.stan.video.bittyvideo.ext.showToast
 import com.stan.video.bittyvideo.mvp.contract.HotTabContract
 import com.stan.video.bittyvideo.mvp.model.bean.TabInfoBean
 import com.stan.video.bittyvideo.mvp.presenter.HotTabPresenter
 import com.stan.video.bittyvideo.net.exception.ErrorStatus
-import com.stan.video.bittyvideo.view.adapter.BaseFragmentAdapter
 import com.stan.video.bittyvideo.utils.StatusBarUtil
-import kotlinx.android.synthetic.main.fragment_hot.*
 
 /**
  * Created by Stan
  * on 2019/6/6.
  */
-class HotFragment : BaseFragment(), HotTabContract.View {
+class HotFragment : BaseViewFragment(), HotTabContract.View {
+    private lateinit var binding: FragmentHotBinding
     protected var offscreenPageLimit = 1
-    override fun getLayoutId(): Int = R.layout.fragment_hot
+    override fun getLayoutView(): View {
+        binding = FragmentHotBinding.inflate(layoutInflater)
+        return binding.root
+    }
+
     private var mTitle: String? = null
     private val mPresenter by lazy { HotTabPresenter() }
     private val mTitleTabText = ArrayList<String>()
@@ -47,14 +51,14 @@ class HotFragment : BaseFragment(), HotTabContract.View {
     }
 
     override fun initView() {
-        mLayoutStatusView = multipleStatusView
+        mLayoutStatusView = binding.multipleStatusView
         activity?.let { StatusBarUtil.darkMode(it) }
-        activity?.let { StatusBarUtil.setPaddingSmart(it, mTabLayout) }
+        activity?.let { StatusBarUtil.setPaddingSmart(it, binding.mTabLayout) }
 
     }
 
     override fun showLoading() {
-        multipleStatusView.showLoading()
+        binding.multipleStatusView.showLoading()
     }
 
     override fun dismissLoading() {
@@ -63,16 +67,16 @@ class HotFragment : BaseFragment(), HotTabContract.View {
     }
 
     override fun setTabInfo(tabInfoBean: TabInfoBean) {
-        multipleStatusView.showContent()
+        binding.multipleStatusView.showContent()
         tabInfoBean.tabInfo.tabList.mapTo(mTitleTabText) { it.name }
         tabInfoBean.tabInfo.tabList.mapTo(fragments) { RankFragment.getInstance(it.apiUrl) }
-        mViewPager.offscreenPageLimit = offscreenPageLimit
-        mViewPager.adapter = VpAdapter(requireActivity()).apply {
+        binding.mViewPager.offscreenPageLimit = offscreenPageLimit
+        binding.mViewPager.adapter = VpAdapter(requireActivity()).apply {
             addFragments(
                 fragments
             )
         }
-        TabLayoutMediator(mTabLayout, mViewPager) { tab, position ->
+        TabLayoutMediator(binding.mTabLayout, binding.mViewPager) { tab, position ->
             tab.text = mTitleTabText[position]
         }.attach()
     }
@@ -80,9 +84,9 @@ class HotFragment : BaseFragment(), HotTabContract.View {
     override fun showError(errorMsg: String, errorCode: Int) {
         showToast(errorMsg)
         if (errorCode == ErrorStatus.NETWORK_ERROR) {
-            multipleStatusView.showNoNetwork()
+            binding.multipleStatusView.showNoNetwork()
         } else {
-            multipleStatusView.showError()
+            binding.multipleStatusView.showError()
         }
 
     }

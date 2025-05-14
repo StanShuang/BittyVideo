@@ -10,13 +10,13 @@ import androidx.annotation.LayoutRes
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import com.classic.common.MultipleStatusView
-import com.stan.video.bittyvideo.app.MyApplication
 import pub.devrel.easypermissions.AppSettingsDialog
 import pub.devrel.easypermissions.EasyPermissions
 
 /**
  * Created by Stan
  * on 2019/6/6.
+ *
  */
 abstract class BaseFragment: Fragment(),EasyPermissions.PermissionCallbacks {
 

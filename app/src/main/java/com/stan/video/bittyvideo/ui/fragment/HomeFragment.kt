@@ -1,8 +1,8 @@
 package com.stan.video.bittyvideo.ui.fragment
 
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
+import android.view.View
 import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.DefaultItemAnimator
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.orhanobut.logger.Logger
 import com.scwang.smartrefresh.header.MaterialHeader
 import com.stan.video.bittyvideo.R
-import com.stan.video.bittyvideo.base.BaseFragment
+import com.stan.video.bittyvideo.base.BaseViewFragment
+import com.stan.video.bittyvideo.databinding.FragmentHomeBinding
 import com.stan.video.bittyvideo.ext.showToast
 import com.stan.video.bittyvideo.mvp.contract.HomeContract
 import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
@@ -20,7 +21,6 @@ import com.stan.video.bittyvideo.net.exception.ErrorStatus
 import com.stan.video.bittyvideo.ui.activity.SearchActivity
 import com.stan.video.bittyvideo.ui.adapter.HomeAdapter
 import com.stan.video.bittyvideo.utils.StatusBarUtil
-import kotlinx.android.synthetic.main.fragment_home.*
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
@@ -30,9 +30,13 @@ import kotlin.collections.ArrayList
  * on 2019/6/6.
  */
 @Suppress("DEPRECATION")
-class HomeFragment: BaseFragment() ,HomeContract.View{
+class HomeFragment: BaseViewFragment() ,HomeContract.View{
+    private lateinit var binding: FragmentHomeBinding
     private var mTitle: String? = null
-    override fun getLayoutId(): Int = R.layout.fragment_home
+    override fun getLayoutView(): View {
+        binding = FragmentHomeBinding.inflate(layoutInflater)
+        return binding.root
+    }
     private val mPresenter: HomePresenter by lazy { HomePresenter() }
     //是否是在下拉刷新
     private var isRefresh = false
@@ -65,33 +69,33 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
     override fun initView() {
         mPresenter.attachView(this)
         //内容跟随偏移
-        mRefreshLayout.setEnableHeaderTranslationContent(true)
-        mRefreshLayout.setOnRefreshListener {
+        binding.mRefreshLayout.setEnableHeaderTranslationContent(true)
+        binding.mRefreshLayout.setOnRefreshListener {
             isRefresh = true
             mPresenter.requestHomeData(num)
         }
-        mMaterialHeader = mRefreshLayout.refreshHeader as MaterialHeader?
+        mMaterialHeader = binding.mRefreshLayout.refreshHeader as MaterialHeader?
         //打开下拉刷新区域块背景:
         mMaterialHeader?.setShowBezierWave(true)
         //设置下拉刷新主题颜色
-        mRefreshLayout.setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
+        binding.mRefreshLayout.setPrimaryColorsId(R.color.color_light_black, R.color.color_title_bg)
 
-        iv_search.setOnClickListener {
+        binding.ivSearch.setOnClickListener {
             //TODO 切换搜索页面，采用MVVM架构
             SearchFragment.switchFragment(requireActivity())
 //            openSearchActivity()
         }
-        mLayoutStatusView = multipleStatusView
-        mRecyclerView.addOnScrollListener(scrollListener)
+        mLayoutStatusView = binding.multipleStatusView
+        binding.mRecyclerView.addOnScrollListener(scrollListener)
         //状态栏透明和间距处理
         activity?.run {
             StatusBarUtil.darkMode(this)
-            StatusBarUtil.setPaddingSmart(this, toolbar)
+            StatusBarUtil.setPaddingSmart(this, binding.toolbar)
         }
     }
 
     private fun openSearchActivity() {
-        val pair = activity?.let { ActivityOptionsCompat.makeSceneTransitionAnimation(it,iv_search,iv_search.transitionName) }
+        val pair = activity?.let { ActivityOptionsCompat.makeSceneTransitionAnimation(it,binding.ivSearch,binding.ivSearch.transitionName) }
         startActivity(Intent(activity,SearchActivity :: class.java),pair?.toBundle())
     }
 
@@ -119,19 +123,19 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
             super.onScrolled(recyclerView, dx, dy)
             val currentVisibleItmePosition = linearLayoutManager.findFirstVisibleItemPosition()
             if(currentVisibleItmePosition == 0){
-                toolbar.setBackgroundColor(resources.getColor(R.color.color_translucent))
-                iv_search.setImageResource(R.mipmap.ic_action_search_white)
-                tv_header_title.text = ""
+                binding.toolbar.setBackgroundColor(resources.getColor(R.color.color_translucent))
+                binding.ivSearch.setImageResource(R.mipmap.ic_action_search_white)
+                binding.tvHeaderTitle.text = ""
             }else{
                 if(mHomeAdapter?.mData!!.size >1 ){
-                    toolbar.setBackgroundColor(resources.getColor(R.color.color_title_bg))
-                    iv_search.setImageResource(R.mipmap.ic_action_search_black)
+                    binding.toolbar.setBackgroundColor(resources.getColor(R.color.color_title_bg))
+                    binding.ivSearch.setImageResource(R.mipmap.ic_action_search_black)
                     val itemList = mHomeAdapter!!.mData
                     val item = itemList[currentVisibleItmePosition + mHomeAdapter!!.bannerItemSize -1]
                     if(item.type == "textHeader"){
-                        tv_header_title.text = item.data?.text
+                        binding.tvHeaderTitle.text = item.data?.text
                     }else{
-                        tv_header_title.text = simpleDateFormat.format(item.data?.date)
+                        binding.tvHeaderTitle.text = simpleDateFormat.format(item.data?.date)
                     }
 
                 }
@@ -153,7 +157,7 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
     }
 
     override fun dismissLoading() {
-      mRefreshLayout.finishRefresh()
+      binding.mRefreshLayout.finishRefresh()
     }
 
     override fun setHomeData(homeBean: HomeBean) {
@@ -164,9 +168,9 @@ class HomeFragment: BaseFragment() ,HomeContract.View{
         //设置 banner 大小
         mHomeAdapter?.setBannerSize(homeBean.issueList[0].count)
 
-        mRecyclerView.adapter = mHomeAdapter
-        mRecyclerView.layoutManager = linearLayoutManager
-        mRecyclerView.itemAnimator = DefaultItemAnimator()
+        binding.mRecyclerView.adapter = mHomeAdapter
+        binding.mRecyclerView.layoutManager = linearLayoutManager
+        binding.mRecyclerView.itemAnimator = DefaultItemAnimator()
     }
 
     override fun setMoreData(itemList: ArrayList<HomeBean.Issue.Item>) {

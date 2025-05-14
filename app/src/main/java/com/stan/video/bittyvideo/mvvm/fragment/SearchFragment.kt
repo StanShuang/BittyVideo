@@ -60,7 +60,7 @@ class SearchFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         StatusBarUtil.darkMode(requireActivity())
-        StatusBarUtil.setPaddingSmart(requireActivity(),binding.llSearch)
+        StatusBarUtil.setPaddingSmart(requireActivity(), binding.llSearch)
         binding.llSearch.visibleAlphaAnimation(500)
         binding.etQuery.setDrawable(
             ContextCompat.getDrawable(
@@ -71,7 +71,7 @@ class SearchFragment : Fragment() {
         binding.etQuery.setOnEditorActionListener(EditorActionListener(requireActivity(), binding))
         binding.tvCancel.setOnClickListener {
             hideSoftKeyboard()
-            removeFragment(requireActivity())
+            removeFragment(requireActivity(), this)
         }
 
         val layoutManager = LinearLayoutManager(requireActivity())
@@ -91,7 +91,7 @@ class SearchFragment : Fragment() {
                 result.exceptionOrNull()?.printStackTrace()
                 return@Observer
             }
-            if (response.isNullOrEmpty()) {
+            if (response.isEmpty()) {
                 return@Observer
             }
             viewModel.dataList.clear()
@@ -134,10 +134,10 @@ class SearchFragment : Fragment() {
     }
 
     override fun onCreateAnimation(transit: Int, enter: Boolean, nextAnim: Int): Animation? {
-        return if(enter){
-            AnimationUtils.loadAnimation(requireActivity(),R.anim.anl_push_up_in)
-        }else{
-            AnimationUtils.loadAnimation(requireActivity(),R.anim.anl_push_top_out)
+        return if (enter) {
+            AnimationUtils.loadAnimation(requireActivity(), R.anim.anl_push_up_in)
+        } else {
+            AnimationUtils.loadAnimation(requireActivity(), R.anim.anl_push_top_out)
         }
     }
 
@@ -161,9 +161,9 @@ class SearchFragment : Fragment() {
         /**
          * 先移除Fragment，并将Fragment从堆栈弹出。
          */
-        fun removeFragment(activity: Activity) {
+        fun removeFragment(activity: Activity, fragment: Fragment) {
             (activity as AppCompatActivity).supportFragmentManager.run {
-                beginTransaction().remove(SearchFragment()).commitAllowingStateLoss()
+                beginTransaction().remove(fragment).commitAllowingStateLoss()
                 popBackStack()
             }
         }
