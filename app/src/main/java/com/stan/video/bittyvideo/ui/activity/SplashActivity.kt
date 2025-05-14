@@ -15,6 +15,7 @@ import com.stan.video.bittyvideo.base.BaseActivity
 import com.stan.video.bittyvideo.base.BaseViewActivity
 import com.stan.video.bittyvideo.databinding.ActivitySplashBinding
 import com.stan.video.bittyvideo.utils.AppUtils
+import com.stan.video.bittyvideo.utils.StatusBarUtil
 import pub.devrel.easypermissions.EasyPermissions
 
 /**
@@ -47,6 +48,8 @@ class SplashActivity : BaseViewActivity() {
 
     @SuppressLint("SetTextI18n")
     override fun initView() {
+        StatusBarUtil.darkMode(this)
+        StatusBarUtil.setPaddingSmart(this, binding.layoutSplash)
         binding.tvAppName.typeface = textTypeFace
         binding.tvSplashDesc.typeface = descTypeFace
         binding.tvVersionName.text = "v${AppUtils.getVerName(MyApplication.context)}"

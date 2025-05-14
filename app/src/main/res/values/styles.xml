@@ -7,13 +7,19 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
     <style name="AppTheme.NoActionBar.FullScreent">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowBackground">@color/color_title_bg</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowTranslucentStatus">true</item>
     </style>
+
     <style name="AppTheme.Label">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -22,12 +28,14 @@
         <item name="android:textSize">@dimen/textSize_content</item>
         <item name="android:textColor">@color/color_gray</item>
     </style>
+
     <style name="AppTheme.Label.Layout">
         <item name="android:paddingTop">@dimen/padding_common_v</item>
         <item name="android:paddingBottom">@dimen/padding_common_v</item>
         <item name="android:paddingLeft">@dimen/padding_common_h</item>
         <item name="android:paddingRight">@dimen/padding_common_h</item>
     </style>
+
     <style name="AppTheme.DiverLine">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">0.5dp</item>
@@ -35,10 +43,12 @@
         <item name="android:divider">@color/color_division_line</item>
         <item name="android:background">@color/color_division_line</item>
     </style>
+
     <style name="AppTheme.Label.Title">
         <item name="android:textColor">@color/color_black</item>
         <item name="android:textSize">@dimen/textSize_titleSmall</item>
     </style>
+
     <style name="AppTheme.Label.Description">
         <item name="android:gravity">top</item>
         <item name="android:lineSpacingExtra">5dp</item>
