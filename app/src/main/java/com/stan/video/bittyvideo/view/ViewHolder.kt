@@ -12,6 +12,12 @@ import androidx.recyclerview.widget.RecyclerView
  * Created by Stan
  * on 2019/6/13.
  */
+
+/**
+ * 未知类型，占位进行容错处理。
+ */
+class EmptyViewHolder(view: View) : RecyclerView.ViewHolder(view)
+
 @Suppress("UNCHECKED_CAST")
 class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
     //用于缓存已找的界面

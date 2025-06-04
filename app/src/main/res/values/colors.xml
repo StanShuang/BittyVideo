@@ -57,4 +57,10 @@
     <color name="grayDark">#adadad</color>
     <color name="blue">#4687d7</color>
     <color name="gray">#ededed</color>
+    <color name="colorTextSecondary">#888888</color>
+    <color name="colorTextPrimaryDark">#333333</color>
+    <color name="black">#000000</color>
+    <color name="loading">#cdcdcd</color>
+
+    <color name="blackAlpha20">#cc000000</color>
 </resources>

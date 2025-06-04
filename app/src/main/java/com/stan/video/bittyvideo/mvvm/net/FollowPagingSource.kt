@@ -1,5 +1,6 @@
 package com.stan.video.bittyvideo.mvvm.net
 
+import android.util.Log
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
 import com.stan.video.bittyvideo.api.ApiService
@@ -22,6 +23,7 @@ class FollowPagingSource(private val apiService: ApiService) : PagingSource<Stri
             val prevKey = null
             val newKey =
                 if (repoItems.isNotEmpty() && !repoResponse.nextPageUrl.isNullOrEmpty()) repoResponse.nextPageUrl else null
+            Log.d("FollowPagingSource", "nextPageUrl = $newKey")
             LoadResult.Page(repoItems, prevKey, newKey)
         } catch (e: Exception) {
             e.printStackTrace()

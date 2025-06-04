@@ -8,6 +8,7 @@ package com.stan.video.bittyvideo.utils
 interface Const {
     interface ItemViewType {
         companion object {
+            const val UNKNOWN = -1              //未知类型，使用EmptyViewHolder容错处理。
             const val CUSTOM_HEADER = 0         //自定义头部类型。
             const val MAX = 100   //避免外部其他类型与此处包含的某个类型重复。
         }

@@ -21,5 +21,4 @@
 
     <!-- 其他界面标题栏大小 -->
     <dimen name="actionBarSizeSecondary">44dp</dimen>
-    <color name="colorTextSecondary">#888888</color>
 </resources>

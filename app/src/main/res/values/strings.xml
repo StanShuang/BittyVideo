@@ -30,12 +30,22 @@
     <string name="feedback">意见反馈</string>
 
 
-
     <string name="loading_text">加载中&#8230;</string>
     <string name="no_network">请检查网络后点击重新加载</string>
     <string name="data_error">数据获取失败(ㄒoㄒ)~~</string>
     <string name="empty_view_hint">暂时木有内容呀~~</string>
     <string name="splash_text">每日精选视频，让你大开眼界</string>
+
+    <!-- 网络 -->
+    <string name="network_error">网络错误</string>
+    <string name="error_view_tip">点击屏幕重试</string>
+    <string name="json_data_error">数据解析异常</string>
+    <string name="network_connect_error">网络连接异常</string>
+    <string name="network_connect_timeout">网络连接超时</string>
+    <string name="no_route_to_host">无法连接到服务器</string>
+    <string name="network_response_code_error">服务器状态码异常：</string>
+    <string name="error_view_tip_retry">加载失败，点击重试</string>
+    <string name="unknown_error">发生未知错误</string>
 
 
     <string name="copy_right_notice">内容部分数据归原公司《开眼Eyepetizer》版权所有</string>
@@ -66,4 +76,7 @@
     <string name="commend">推荐</string>
     <string name="daily">日报</string>
     <string name="follow">关注</string>
+
+    <string name="guide_login_tips_four">点击登录后可关注主题和作者</string>
+    <string name="favorites">收藏</string>
 </resources>

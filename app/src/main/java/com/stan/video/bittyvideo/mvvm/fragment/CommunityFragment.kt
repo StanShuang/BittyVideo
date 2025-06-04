@@ -58,7 +58,7 @@ class CommunityFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         StatusBarUtil.darkMode(requireActivity())
-        StatusBarUtil.setPaddingSmart(requireActivity(),binding.titleBar.flTitleBar)
+        StatusBarUtil.setPaddingSmart(requireActivity(), binding.titleBar.flTitleBar)
         binding.viewPager.offscreenPageLimit = 1
         binding.viewPager.adapter = adapter
         binding.titleBar.tabLayout.setTabData(createTitles)
@@ -73,7 +73,9 @@ class CommunityFragment : Fragment() {
         })
         pageChangeCallback = PageChangeCallback(binding.titleBar.tabLayout)
         binding.viewPager.registerOnPageChangeCallback(pageChangeCallback!!)
-
+        binding.titleBar.ivSearch.setOnClickListener {
+            SearchFragment.switchFragment(requireActivity())
+        }
     }
 
 
@@ -100,7 +102,8 @@ class CommunityFragment : Fragment() {
         }
     }
 
-    class PageChangeCallback(private val tabLayout: CommonTabLayout) : ViewPager2.OnPageChangeCallback() {
+    class PageChangeCallback(private val tabLayout: CommonTabLayout) :
+        ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
             tabLayout.currentTab = position

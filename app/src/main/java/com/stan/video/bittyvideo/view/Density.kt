@@ -23,3 +23,9 @@ fun px2dp(px: Float): Int {
     val scale = MyApplication.context.resources.displayMetrics.density
     return (px / scale + 0.5f).toInt()
 }
+
+/**
+ * 获取屏幕高值。
+ */
+val screenHeight
+    get() = MyApplication.context.resources.displayMetrics.heightPixels
