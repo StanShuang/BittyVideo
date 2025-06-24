@@ -72,4 +72,14 @@
         <item name="typeface">dinTypeface</item>
     </style>
 
+    <style name="AppTheme.FollowTextView">
+        <item name="android:layout_width">44dp</item>
+        <item name="android:layout_height">22dp</item>
+        <item name="android:background">@drawable/shape_follow_radius_black_2dp_bg</item>
+        <item name="android:gravity">center</item>
+        <item name="android:text">@string/plus_follow</item>
+        <item name="android:textSize">10sp</item>
+        <item name="typeface">fzdb1Typeface</item>
+    </style>
+
 </resources>

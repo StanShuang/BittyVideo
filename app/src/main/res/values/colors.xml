@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FFFFFF</color>
     <color name="colorPrimaryDark">#549cf8</color>
-    <color name="colorAccent">#EF5362</color>
+    <color name="colorAccent">#61f2d4</color>
 
     <color name="color_gray">#9a9a9a</color>
 
@@ -62,5 +62,13 @@
     <color name="black">#000000</color>
     <color name="loading">#cdcdcd</color>
 
+    <color name="whiteAlpha10">#e6ffffff</color>
+    <color name="whiteAlpha50">#80ffffff</color>
+    <color name="whiteAlpha60">#66ffffff</color>
+    <color name="whiteAlpha80">#33ffffff</color>
     <color name="blackAlpha20">#cc000000</color>
+    <color name="blackAlpha50">#80000000</color>
+    <color name="blackAlpha55">#73000000</color>
+    <color name="blackAlpha70">#4d000000</color>
+    <color name="blackAlpha80">#33000000</color>
 </resources>

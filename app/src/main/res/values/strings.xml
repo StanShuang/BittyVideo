@@ -76,7 +76,34 @@
     <string name="commend">推荐</string>
     <string name="daily">日报</string>
     <string name="follow">关注</string>
+    <string name="plus_follow">+关注</string>
+    <string name="private_letter">私信</string>
+    <string name="photo_count">%1$d/%2$d</string>
+    <string name="share">分享</string>
 
     <string name="guide_login_tips_four">点击登录后可关注主题和作者</string>
     <string name="favorites">收藏</string>
+
+    <string name="theme_square">主题创作广场</string>
+    <string name="release_works_daily">发布你的作品和日常</string>
+    <string name="advert">广告</string>
+    <string name="choiceness">精选</string>
+    <string name="image_size_error">图片尺寸异常</string>
+    <string name="jump_page_unknown_error">跳转界面出现未知异常</string>
+    <string name="split_line_two">/</string>
+
+
+    <!-- 分享 -->
+    <string name="share_to">分享到</string>
+    <string name="wechat">微信</string>
+    <string name="wechat_memory">朋友圈</string>
+    <string name="qq_friends">QQ</string>
+    <string name="qq_zone">QQ空间</string>
+    <string name="weibo">微博</string>
+    <string name="more">更多</string>
+    <string name="share_unknown_error">分享出现未知异常</string>
+    <string name="your_phone_does_not_install_qq">您的手机还没有安装QQ</string>
+    <string name="your_phone_does_not_install_wechat">您的手机还没有安装微信</string>
+    <string name="your_phone_does_not_install_weibo">您的手机还没有安装微博</string>
+    <string name="your_phone_does_not_install_qq_zone">您的手机还没有安装QQ空间</string>
 </resources>

@@ -16,6 +16,7 @@ import com.stan.video.bittyvideo.mvvm.fragment.FollowFragment
 import com.stan.video.bittyvideo.utils.Const
 import com.stan.video.bittyvideo.utils.DateUtil
 import com.stan.video.bittyvideo.utils.GlobalUtil.setOnClickListener
+import com.stan.video.bittyvideo.utils.VideoAudioAutoPlayUtil
 import com.stan.video.bittyvideo.utils.showToast
 import com.stan.video.bittyvideo.view.EmptyViewHolder
 import com.stan.video.bittyvideo.view.VideoListener
@@ -83,7 +84,7 @@ class FollowAdapter(val fragment: FollowFragment) :
                     holder.tvReplyCount.text = consumption.replyCount.toString()
                     holder.tvVideoDuration.visible()    //视频播放后，复用tvVideoDuration直接隐藏了
                     holder.tvVideoDuration.text = duration.conversionVideoDuration()
-                    CommendAdapter.startAutoPlay(
+                   VideoAudioAutoPlayUtil.startAutoPlay(
                         fragment.requireActivity(),
                         holder.videoPlayer,
                         position,
