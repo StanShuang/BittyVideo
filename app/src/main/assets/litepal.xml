@@ -35,6 +35,10 @@
     <list>
         <mapping class="com.stan.video.bittyvideo.mvp.model.bean.WatchHistoryBean" />
         <mapping class="com.stan.video.bittyvideo.mvp.model.bean.NewWatchHistoryBean" />
+        <mapping
+            class="com.stan.video.bittyvideo.mvp.model.bean.HomeBean$Issue$Item$Data$PlayInfo" />
+        <mapping
+            class="com.stan.video.bittyvideo.mvp.model.bean.HomeBean$Issue$Item$Data$Url" />
     </list>
 
     <!--

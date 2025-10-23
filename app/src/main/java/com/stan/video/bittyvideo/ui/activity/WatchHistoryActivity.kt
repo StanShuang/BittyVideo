@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.stan.video.bittyvideo.R
 import com.stan.video.bittyvideo.base.BaseViewActivity
 import com.stan.video.bittyvideo.databinding.LayoutWatchHistoryBinding
+import com.stan.video.bittyvideo.mvp.model.bean.HomeBean
 import com.stan.video.bittyvideo.mvp.model.bean.NewWatchHistoryBean
 
 import com.stan.video.bittyvideo.ui.adapter.WatchHistoryAdapter
@@ -36,12 +37,21 @@ class WatchHistoryActivity : BaseViewActivity() {
 
     override fun initData() {
         doAsync {
-            val historyBeans = LitePal.findAll(NewWatchHistoryBean::class.java)
+            val historyBeans = LitePal.findAll(NewWatchHistoryBean::class.java, true)
             historyBeans.reverse()
             historyBeans.forEach { it ->
                 Log.d("litepal", "vedio title is ${it.title} , vedio time is ${it.category}")
                 it.playInfo.forEach {
-                    Log.d("litepal", "playInfo nzme is ${it.name} , vedio type is ${it.type}")
+                    Log.d("litepal", "playInfo name is ${it.name} , vedio type is ${it.type}")
+                    val list = LitePal.where(
+                        "homebean\$issue\$item\$data\$playinfo_id = ?",
+                        it.id.toString()
+                    )
+                        .find(HomeBean.Issue.Item.Data.Url::class.java)
+                    it.urlList.addAll(list)
+                    it.urlList.forEach {
+                        Log.d("litepal", "url size = ${it.size}")
+                    }
                 }
             }
             historys = historyBeans as ArrayList<NewWatchHistoryBean>

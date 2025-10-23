@@ -6,6 +6,7 @@ import android.content.res.Configuration
 import android.os.Build
 import androidx.core.view.ViewCompat
 import android.transition.Transition
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -71,9 +72,11 @@ class VideoDetailActivity : BaseViewActivity(), VideoDetailContract.View {
     }
 
     private fun savePlayVideo() {
-        //TODO 添加观看记录，使用Android 数据库 问题： 取出的数据为空
         doAsync {
             val playInfo = itemData.data?.playInfo
+            for (play in playInfo!!) {
+                LitePal.saveAll(play.urlList)
+            }
             LitePal.saveAll(playInfo)
             val historyBean = itemData.data?.let {
                 NewWatchHistoryBean(
