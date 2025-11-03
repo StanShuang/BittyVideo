@@ -62,14 +62,9 @@ class WatchHistoryAdapter(context: Context, itemLists: ArrayList<NewWatchHistory
         Intent(activity,VideoDetailActivity :: class.java).run{
             putExtra(Constant.BUNDLE_VIDEO_DATA,itemData.data)
             putExtra(VideoDetailActivity.Companion.TRANSITION,true)
-            if(android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP){
-                val pair = Pair<View,String>(view,VideoDetailActivity.IMG_TRANSITION)
-                val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair)
-                ActivityCompat.startActivity(activity,this,activityOptions.toBundle())
-            }else{
-                activity.startActivity(this)
-                activity.overridePendingTransition(R.anim.anim_in,R.anim.anim_out)
-            }
+            val pair = Pair<View,String>(view,VideoDetailActivity.IMG_TRANSITION)
+            val activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(activity,pair)
+            ActivityCompat.startActivity(activity,this,activityOptions.toBundle())
         }
     }
 }
